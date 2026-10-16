@@ -1,0 +1,25 @@
+{
+  "_aide": "Modèles de légendes par catégorie. {titre} sera remplacé par le titre du prompt.",
+  "categories": {
+    "pub-produit": [
+      "Une pub produit qui donne envie, créée par IA. ✨\n\n« {titre} » : un visuel qui vend, sans shooting ni studio.\nTu as un produit à mettre en valeur ? Copie le prompt, adapte-le à ta marque, et c'est parti.",
+      "Pas de studio photo, pas de budget pub énorme. 🎯\n\n« {titre} » a été généré par IA. Le même rendu est possible pour ton produit avec le bon prompt."
+    ],
+    "portraits": [
+      "Un portrait qui a de la présence. 👑\n\n« {titre} » : un rendu réaliste, pensé avec un contexte afro.\nTu veux ta propre version ? Le prompt est prêt à copier.",
+      "Le bon prompt change tout. 📸\n\n« {titre} » : généré par IA, avec le soin des détails qu'on attend d'un vrai shooting."
+    ],
+    "marque-logo": [
+      "Une identité de marque qui se remarque. 🔥\n\n« {titre} » : un visuel créé par IA pour t'inspirer.\nTu lances ta marque ? Pars d'un prompt, adapte-le à tes couleurs.",
+      "Ton logo, ta marque, ton style. 🎨\n\n« {titre} » : un exemple de ce que l'IA peut faire pour ton image de marque."
+    ],
+    "affiches-visuels": [
+      "Une affiche qui arrête le pouce. 🎬\n\n« {titre} » : un visuel prêt à inspirer ton prochain événement ou ta prochaine promo.",
+      "Un visuel fort en quelques minutes. ⚡\n\n« {titre} » : créé par IA avec un prompt que tu peux copier et adapter."
+    ],
+    "_defaut": [
+      "Un visuel créé par IA, avec un contexte afro. ✨\n\n« {titre} » : retrouve le prompt et fais ta propre version."
+    ]
+  },
+  "appel": "👉 Le prompt est sur Calista, la galerie de prompts IA en contexte afro. Lien dans la bio."
+}

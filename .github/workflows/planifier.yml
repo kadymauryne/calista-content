@@ -1,0 +1,36 @@
+name: Planifier la semaine
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Test à blanc (n'écrit rien) : 1 = oui, 0 = non"
+        default: "1"
+  # Pour activer la planification automatique chaque dimanche soir,
+  # retire le # devant les deux lignes ci-dessous (Claude le fera quand tu l'auras validé).
+  # schedule:
+  #   - cron: "0 20 * * 0"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish
+  cancel-in-progress: false
+
+jobs:
+  planifier:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install pillow
+      - name: Choisir les prompts de la semaine
+        env:
+          DRY_RUN: ${{ github.event.inputs.dry_run || '0' }}
+        run: python3 scripts/plan_week.py
+      - name: Enregistrer le planning
+        run: |
+          git config user.name "calista-bot"
+          git config user.email "calista-bot@users.noreply.github.com"
+          git add queue images
+          git diff --cached --quiet || (git commit -m "Planning de la semaine" && git push)
