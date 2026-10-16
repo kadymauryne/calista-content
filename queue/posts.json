@@ -10,5 +10,38 @@
     "status": "published",
     "ig_media_id": "18102228362639304",
     "published_at": "2026-10-16T11:02:44+00:00"
+  },
+  {
+    "id": "auto-20261019-1200",
+    "type": "image",
+    "caption": "Une identité de marque qui se remarque. 🔥\n\n« Marque de poudre de moringa bio » : un visuel créé par IA pour t'inspirer.\nTu lances ta marque ? Pars d'un prompt, adapte-le à tes couleurs.\n\n👉 Le prompt est sur Calista, la galerie de prompts IA en contexte afro. Lien dans la bio.\n\n#CalistaApp #PromptIA #IAAfricaine #CreativeIA #AbidjanCreatives #CoteDIvoire #ContenuIA #EntrepreneurIvoirien",
+    "images": [
+      "images/auto/WGHLEfkehqho1bnlfTu7.jpg"
+    ],
+    "scheduled_at": "2026-10-19T12:00:00Z",
+    "status": "pending",
+    "source_id": "WGHLEfkehqho1bnlfTu7"
+  },
+  {
+    "id": "auto-20261021-1900",
+    "type": "image",
+    "caption": "Une affiche qui arrête le pouce. 🎬\n\n« Page de garde Magasine 1 » : un visuel prêt à inspirer ton prochain événement ou ta prochaine promo.\n\n👉 Le prompt est sur Calista, la galerie de prompts IA en contexte afro. Lien dans la bio.\n(Prompt premium)\n\n#CalistaApp #PromptIA #IAAfricaine #CreativeIA #AbidjanCreatives #CoteDIvoire #ContenuIA #EntrepreneurIvoirien",
+    "images": [
+      "images/auto/6GxIVmwFW7rkqkdFw2SL.jpg"
+    ],
+    "scheduled_at": "2026-10-21T19:00:00Z",
+    "status": "pending",
+    "source_id": "6GxIVmwFW7rkqkdFw2SL"
+  },
+  {
+    "id": "auto-20261023-1200",
+    "type": "image",
+    "caption": "Pas de studio photo, pas de budget pub énorme. 🎯\n\n« Pub brume visage » a été généré par IA. Le même rendu est possible pour ton produit avec le bon prompt.\n\n👉 Le prompt est sur Calista, la galerie de prompts IA en contexte afro. Lien dans la bio.\n\n#CalistaApp #PromptIA #IAAfricaine #CreativeIA #AbidjanCreatives #CoteDIvoire #ContenuIA #EntrepreneurIvoirien",
+    "images": [
+      "images/auto/d5ZxD0Uc85SQPDlsoRre.jpg"
+    ],
+    "scheduled_at": "2026-10-23T12:00:00Z",
+    "status": "pending",
+    "source_id": "d5ZxD0Uc85SQPDlsoRre"
   }
 ]
