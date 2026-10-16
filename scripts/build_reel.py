@@ -275,14 +275,9 @@ def main(spec_path, out_path):
                        glob.glob(os.path.join(ROOT, "assets", "music", "*.m4a")))
         if music:
             track = random.choice(music)
-            dur = float(subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration",
-                                        "-of", "default=nw=1:nk=1", track],
-                                       capture_output=True, text=True, check=True).stdout.strip())
-            # On aligne la FIN de la musique sur la fin de la vidéo : la signature sonore
-            # tombe toujours sur la carte finale « Calista ».
-            offset = max(0.0, dur - length)
-            audio = ["-ss", f"{offset:.2f}", "-i", track,
-                     "-af", f"afade=t=in:d=0.4,afade=t=out:st={max(0, length - 0.8):.1f}:d=0.8"]
+            # La musique démarre au début de l'extrait (calé sur le drop) et s'éteint en douceur.
+            audio = ["-i", track,
+                     "-af", f"afade=t=out:st={max(0, length - 1.2):.1f}:d=1.2"]
         else:
             audio = ["-f", "lavfi", "-i", "anullsrc=r=44100:cl=stereo"]
         run(["ffmpeg", "-y", "-i", silent, *audio, "-map", "0:v", "-map", "1:a",

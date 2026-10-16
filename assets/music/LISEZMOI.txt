@@ -1,2 +1,8 @@
-Dépose ici un fichier audio (.mp3 ou .m4a) libre de droits pour usage commercial.
-Les réels l utiliseront automatiquement. Sans fichier, les réels sont silencieux.
+Musique des réels Calista.
+
+afro-calista.m4a : extrait de 20 s (à partir de 1:04, le « drop ») du morceau
+« Afro Beat » de kiravale, Pixabay Music (ID 598119), choisi par Kady.
+Licence Pixabay : usage commercial autorisé, sans attribution obligatoire.
+
+Pour changer de musique : remplace ce fichier par un autre extrait .m4a ou .mp3
+libre de droits pour usage commercial. S'il y a plusieurs fichiers, chaque réel en choisit un au hasard.
