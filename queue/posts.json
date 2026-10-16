@@ -1,0 +1,10 @@
+[
+  {
+    "id": "exemple-001",
+    "type": "image",
+    "caption": "Exemple. Remplace-moi par une vraie légende.",
+    "images": ["images/exemple.jpg"],
+    "scheduled_at": "2099-01-01T09:00:00Z",
+    "status": "pending"
+  }
+]

@@ -1,0 +1,16 @@
+name: Vérifier le jeton Instagram
+
+on:
+  schedule:
+    - cron: "23 6 * * 1"     # chaque lundi matin
+  workflow_dispatch: {}
+
+jobs:
+  token:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Vérifier et prolonger le jeton
+        env:
+          IG_TOKEN: ${{ secrets.IG_TOKEN }}
+        run: python3 scripts/check_token.py
