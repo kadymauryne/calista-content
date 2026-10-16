@@ -93,7 +93,7 @@ def slide_frame(src, text, index, total, hook=None):
     bg = bg.resize((round(bg.width * scale), round(bg.height * scale)))
     left, top = (bg.width - W) // 2, (bg.height - H) // 2
     bg = bg.crop((left, top, left + W, top + H)).filter(ImageFilter.GaussianBlur(45))
-    bg = Image.eval(bg, lambda p: int(p * 0.45))
+    bg = Image.eval(bg, lambda p: int(p * 0.6))
     frame = bg.convert("RGBA")
 
     max_w, max_h = 960, 1080
@@ -112,16 +112,123 @@ def slide_frame(src, text, index, total, hook=None):
     return frame.convert("RGB")
 
 
-def cta_frame(cta, hook):
-    frame = Image.new("RGB", (W, H), DARK)
-    d = ImageDraw.Draw(frame)
-    d.rounded_rectangle((90, 560, W - 90, 1360), radius=48, outline=GOLD, width=5)
-    centered(d, "CALISTA", font(120), 640, GOLD, shadow=False)
-    centered(d, "Galerie de prompts IA", font(52, bold=False), 800, WHITE, shadow=False)
-    centered(d, "contexte afro", font(52, bold=False), 880, WHITE, shadow=False)
-    centered(d, cta, font(56), 1060, WHITE, max_w=820, shadow=False)
-    centered(d, "Lien en bio", font(60), 1230, GOLD, shadow=False)
-    return frame
+GREEN_LIGHT = (46, 184, 92)
+GREEN_DEEP = (12, 120, 62)
+SUN = (255, 207, 51)
+SUN_RAY = (255, 170, 30)
+CREAM = (255, 249, 232)
+ORANGE = (255, 122, 0)
+CONFETTI = [(255, 207, 51), (255, 122, 0), (255, 255, 255), (255, 92, 141), (178, 255, 89), (0, 200, 255)]
+
+
+def ease_out_back(x):
+    c1, c3 = 1.70158, 2.70158
+    return 1 + c3 * (x - 1) ** 3 + c1 * (x - 1) ** 2
+
+
+def green_background():
+    """Dégradé radial vert lumineux (plus clair au centre)."""
+    small = Image.new("RGB", (108, 192))
+    px = small.load()
+    for y in range(192):
+        for x in range(108):
+            d = min(1.0, (((x - 54) / 70) ** 2 + ((y - 80) / 110) ** 2) ** 0.5)
+            px[x, y] = tuple(round(GREEN_LIGHT[i] * (1 - d) + GREEN_DEEP[i] * d) for i in range(3))
+    return small.resize((W, H), Image.BICUBIC)
+
+
+def cta_card(cta):
+    cw, ch = 860, 860
+    card = Image.new("RGBA", (cw, ch), (0, 0, 0, 0))
+    d = ImageDraw.Draw(card)
+    d.rounded_rectangle((0, 0, cw, ch), radius=60, fill=CREAM)
+    d.rounded_rectangle((14, 14, cw - 14, ch - 14), radius=50, outline=SUN, width=8)
+
+    def line(text, fnt, y, fill):
+        text = clean(text)
+        for l in wrap(d, text, fnt, cw - 120):
+            d.text(((cw - d.textlength(l, font=fnt)) / 2, y), l, font=fnt, fill=fill)
+            y += fnt.size + 12
+        return y
+
+    y = line("CALISTA", font(130), 90, GREEN_DEEP)
+    y = line("Galerie de prompts IA", font(50, bold=False), y + 10, (40, 40, 40))
+    y = line("contexte afro", font(50, bold=False), y, (40, 40, 40))
+    y = line(cta, font(58), y + 50, ORANGE)
+    bw, bh, by = 520, 120, ch - 200
+    d.rounded_rectangle(((cw - bw) / 2, by, (cw + bw) / 2, by + bh), radius=60, fill=GREEN_DEEP)
+    f = font(56)
+    txt = "Lien en bio"
+    d.text(((cw - d.textlength(txt, font=f)) / 2, by + (bh - f.size) / 2 - 8), txt, font=f, fill=SUN)
+    return card
+
+
+def cta_frames(cta, n_frames, seed=3):
+    """Carte finale animée : soleil qui tourne, la carte surgit avec un rebond, pluie de confettis."""
+    import math
+    rnd = random.Random(seed)
+    bg = green_background()
+    card = cta_card(cta)
+    sun_c = (W // 2, 520)
+    confetti = []
+    for _ in range(90):                                   # pluie qui tombe d'en haut
+        confetti.append({
+            "x": rnd.uniform(0, W), "y": rnd.uniform(-900, -20), "vx": rnd.uniform(-80, 80),
+            "vy": rnd.uniform(500, 900), "g": 0,
+            "c": rnd.choice(CONFETTI), "w": rnd.randint(16, 28), "h": rnd.randint(9, 15),
+            "rot": rnd.uniform(0, 360), "vr": rnd.uniform(-540, 540)})
+    for _ in range(200):                                  # explosion autour de la carte
+        ang = rnd.uniform(0, 2 * math.pi)
+        speed = rnd.uniform(1400, 2800)
+        confetti.append({
+            "x": W / 2, "y": 1150, "vx": math.cos(ang) * speed, "vy": math.sin(ang) * speed - 700, "g": 1,
+            "c": rnd.choice(CONFETTI), "w": rnd.randint(14, 26), "h": rnd.randint(8, 14),
+            "rot": rnd.uniform(0, 360), "vr": rnd.uniform(-540, 540)})
+    for i in range(n_frames):
+        t_ = i / FPS
+        fr = bg.copy().convert("RGBA")
+        layer = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+        d = ImageDraw.Draw(layer)
+        # Soleil : rayons qui tournent + halo
+        rot = t_ * 25
+        for k in range(16):
+            a1 = math.radians(rot + k * 22.5 - 5)
+            a2 = math.radians(rot + k * 22.5 + 5)
+            r_out = 1300
+            d.polygon([sun_c, (sun_c[0] + r_out * math.cos(a1), sun_c[1] + r_out * math.sin(a1)),
+                       (sun_c[0] + r_out * math.cos(a2), sun_c[1] + r_out * math.sin(a2))],
+                      fill=(*SUN_RAY, 70))
+        pulse = 1 + 0.04 * math.sin(t_ * 6)
+        for rr, alpha in ((260, 60), (215, 110)):
+            r = rr * pulse
+            d.ellipse((sun_c[0] - r, sun_c[1] - r, sun_c[0] + r, sun_c[1] + r), fill=(*SUN, alpha))
+        r = 170 * pulse
+        d.ellipse((sun_c[0] - r, sun_c[1] - r, sun_c[0] + r, sun_c[1] + r), fill=(*SUN, 255))
+        fr.alpha_composite(layer)
+        # Confettis (derrière la carte pour garder le texte lisible)
+        if t_ >= 0.15:
+            tc = t_ - 0.15
+            cl = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+            for cf in confetti:
+                x = cf["x"] + cf["vx"] * tc * 0.6
+                y = cf["y"] + cf["vy"] * tc * 0.6 + 900 * cf.get("g", 1) * tc * tc
+                if -50 < x < W + 50 and -50 < y < H + 50:
+                    piece = Image.new("RGBA", (cf["w"], cf["h"]), (*cf["c"], 255))
+                    piece = piece.rotate(cf["rot"] + cf["vr"] * tc, expand=True)
+                    cl.alpha_composite(piece, (int(x), int(y)))
+            fr.alpha_composite(cl)
+        # La carte surgit (0 -> 0,5 s) avec un rebond
+        p = min(1.0, t_ / 0.5)
+        sc = max(0.05, ease_out_back(p)) if t_ > 0.05 else 0.05
+        cw, ch = max(2, round(card.width * sc)), max(2, round(card.height * sc))
+        c = card.resize((cw, ch), Image.BICUBIC)
+        shadow = Image.new("RGBA", (cw + 60, ch + 60), (0, 0, 0, 0))
+        ImageDraw.Draw(shadow).rounded_rectangle((30, 40, cw + 30, ch + 40), radius=60, fill=(0, 0, 0, 70))
+        shadow = shadow.filter(ImageFilter.GaussianBlur(18))
+        cx, cy = (W - cw) // 2, 1150 - ch // 2
+        fr.alpha_composite(shadow, (cx - 30, cy - 30))
+        fr.alpha_composite(c, (cx, cy))
+        yield fr.convert("RGB")
 
 
 def run(cmd):
@@ -138,18 +245,26 @@ def main(spec_path, out_path):
         frames = [slide_frame(s["image"], s.get("text", ""), i + 1, total,
                               spec.get("hook") if i == 0 else None)
                   for i, s in enumerate(slides)]
-        frames.append(cta_frame(spec.get("cta", "Prompts gratuits sur Calista"), spec.get("hook", "")))
-        durations = [SLIDE_SECONDS] * total + [CTA_SECONDS]
+        durations = [SLIDE_SECONDS] * total
         for i, (fr, dur) in enumerate(zip(frames, durations)):
             png = os.path.join(tmp, f"f{i}.png")
             fr.resize((W * 2, H * 2)).save(png)
             clip = os.path.join(tmp, f"c{i}.mp4")
             frames_n = int(dur * FPS)
-            zoom = "1+0.0006*on" if i < total else "1"
+            zoom = "1+0.0006*on"
             run(["ffmpeg", "-y", "-loop", "1", "-i", png, "-vf",
                  f"zoompan=z='{zoom}':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d={frames_n}:s={W}x{H}:fps={FPS},format=yuv420p",
                  "-frames:v", str(frames_n), "-c:v", "libx264", "-preset", "veryfast", "-crf", "19", clip])
             clips.append(clip)
+        seq = os.path.join(tmp, "cta")
+        os.makedirs(seq)
+        for k, fr in enumerate(cta_frames(spec.get("cta", "Copie les prompts gratuits"), int(CTA_SECONDS * FPS))):
+            fr.save(os.path.join(seq, f"{k:03d}.png"))
+        cta_clip = os.path.join(tmp, "cta.mp4")
+        run(["ffmpeg", "-y", "-framerate", str(FPS), "-i", os.path.join(seq, "%03d.png"),
+             "-c:v", "libx264", "-preset", "veryfast", "-crf", "19", "-pix_fmt", "yuv420p", cta_clip])
+        clips.append(cta_clip)
+        durations.append(CTA_SECONDS)
         lst = os.path.join(tmp, "list.txt")
         with open(lst, "w") as f:
             f.writelines(f"file '{c}'\n" for c in clips)
