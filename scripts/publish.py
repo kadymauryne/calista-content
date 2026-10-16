@@ -10,7 +10,9 @@ Variables d'environnement :
 """
 import json
 import os
+import subprocess
 import sys
+import tempfile
 import time
 import urllib.error
 import urllib.parse
@@ -67,6 +69,34 @@ def publish_container(container_id):
     return call("POST", f"{USER_ID}/media_publish", {"creation_id": container_id})["id"]
 
 
+def upload_reel(container, path):
+    """Envoi direct du fichier vidéo à Instagram (pas besoin d'adresse publique)."""
+    size = os.path.getsize(path)
+    uri = container.get("uri") or f"https://rupload.facebook.com/ig-api-upload/v21.0/{container['id']}"
+    with open(path, "rb") as f:
+        data = f.read()
+    req = urllib.request.Request(uri, data=data, method="POST", headers={
+        "Authorization": f"OAuth {TOKEN}", "offset": "0", "file_size": str(size)})
+    try:
+        with urllib.request.urlopen(req, timeout=300) as r:
+            r.read()
+    except urllib.error.HTTPError as e:
+        raise RuntimeError(f"Envoi de la vidéo refusé {e.code}: {e.read().decode(errors='replace')}") from None
+
+
+def publish_montage_reel(post):
+    here = os.path.dirname(os.path.abspath(__file__))
+    with tempfile.TemporaryDirectory() as tmp:
+        spec, out = os.path.join(tmp, "spec.json"), os.path.join(tmp, "reel.mp4")
+        with open(spec, "w", encoding="utf-8") as f:
+            json.dump({k: post[k] for k in ("hook", "cta", "slides") if k in post}, f, ensure_ascii=False)
+        subprocess.run([sys.executable, os.path.join(here, "build_reel.py"), spec, out], check=True)
+        c = call("POST", f"{USER_ID}/media", {"media_type": "REELS", "upload_type": "resumable",
+                                              "caption": post.get("caption", ""), "share_to_feed": "true"})
+        upload_reel(c, out)
+        return publish_container(c["id"])
+
+
 def publish(post):
     kind = post.get("type", "image")
     caption = post.get("caption", "")
@@ -85,6 +115,8 @@ def publish(post):
         c = call("POST", f"{USER_ID}/media",
                  {"media_type": "CAROUSEL", "children": ",".join(kids), "caption": caption})
         return publish_container(c["id"])
+    if kind == "reel" and post.get("slides"):
+        return publish_montage_reel(post)
     if kind == "reel":
         c = call("POST", f"{USER_ID}/media",
                  {"media_type": "REELS", "video_url": public_url(post["video"]),

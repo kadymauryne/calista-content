@@ -1,10 +1,22 @@
 {
   "_aide": "weekday: 0=lundi ... 6=dimanche. Heures en UTC (= heure d'Abidjan).",
   "slots": [
-    {"weekday": 0, "time": "12:00"},
-    {"weekday": 2, "time": "19:00"},
-    {"weekday": 4, "time": "12:00"}
+    {
+      "weekday": 0,
+      "time": "12:00"
+    },
+    {
+      "weekday": 2,
+      "time": "19:00"
+    },
+    {
+      "weekday": 4,
+      "time": "12:00"
+    }
   ],
   "hashtags": "#CalistaApp #PromptIA #IAAfricaine #CreativeIA #AbidjanCreatives #CoteDIvoire #ContenuIA #EntrepreneurIvoirien",
-  "cooldown_days": 90
+  "cooldown_days": 90,
+  "reel_slots": [],
+  "reel_images": 5,
+  "_reels": "Pour activer 1 réel par semaine, mets reel_slots à : [{\"weekday\": 5, \"time\": \"18:00\"}] (samedi 18 h)."
 }

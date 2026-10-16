@@ -111,6 +111,44 @@ def slots_for(start, weeks, slots):
     return sorted(out)
 
 
+def plan_reels(cfg, captions, queue, history, prompts, used_ids, now, rng):
+    """Un réel = montage de plusieurs images d'une même catégorie."""
+    n = cfg.get("reel_images", 5)
+    wanted = [d for d in slots_for(now, WEEKS, cfg.get("reel_slots", []))
+              if d.strftime("%Y-%m-%dT%H:%M:00Z") not in {p["scheduled_at"] for p in queue}]
+    cutoff = (now - timedelta(days=cfg["cooldown_days"])).isoformat()
+    recent_reel = {h["id"] for h in history if h["at"] >= cutoff and h.get("reel")}
+    for when in wanted:
+        free = [p for p in prompts if p["id"] not in used_ids and p["id"] not in recent_reel]
+        by_cat = {}
+        for p in free:
+            by_cat.setdefault(p["category"], []).append(p)
+        ok = [c for c, v in by_cat.items() if len(v) >= n]
+        if not ok:
+            print(f"Réel du {when:%d/%m} : pas assez d'images neuves dans une même catégorie.")
+            continue
+        cat = rng.choice(sorted(ok))
+        picks = rng.sample(by_cat[cat], n)
+        r = captions["reels"]
+        hook = r["hooks"].get(cat) or r["hooks"]["_defaut"]
+        cap = r["captions"].get(cat) or r["captions"]["_defaut"]
+        stamp = when.strftime("%Y-%m-%dT%H:%M:00Z")
+        print(f"- {stamp}  RÉEL [{cat}] " + ", ".join(p["title"] for p in picks))
+        used_ids |= {p["id"] for p in picks}
+        if DRY:
+            continue
+        queue.append({
+            "id": f"reel-{when.strftime('%Y%m%d-%H%M')}", "type": "reel",
+            "caption": f"{cap}\n\n{captions['appel']}\n\n{cfg['hashtags']}",
+            "hook": hook, "cta": r["cta"],
+            "slides": [{"image": p["image"], "text": p["title"]} for p in picks],
+            "scheduled_at": stamp, "status": "pending",
+            "source_ids": [p["id"] for p in picks]})
+        for p in picks:
+            history.append({"id": p["id"], "category": cat, "reel": True,
+                            "at": now.isoformat(timespec="seconds")})
+
+
 def main():
     cfg, captions, exclude = load("config/schedule.json"), load("config/captions.json"), load("config/exclude.json")
     queue, history = load("queue/posts.json"), load("queue/history.json")
@@ -119,7 +157,7 @@ def main():
     queued_slots = {p["scheduled_at"] for p in queue}
     wanted = [d for d in slots_for(now, WEEKS, cfg["slots"])
               if d.strftime("%Y-%m-%dT%H:%M:00Z") not in queued_slots]
-    if not wanted:
+    if not wanted and not cfg.get("reel_slots"):
         print("Rien à planifier : tous les créneaux sont déjà remplis.")
         return 0
 
@@ -127,7 +165,8 @@ def main():
                and p["id"] not in exclude["ids"]]
     cutoff = (now - timedelta(days=cfg["cooldown_days"])).isoformat()
     recent = {h["id"] for h in history if h["at"] >= cutoff} | \
-             {p["source_id"] for p in queue if p.get("source_id") and p["status"] in ("pending", "draft")}
+             {p["source_id"] for p in queue if p.get("source_id") and p["status"] in ("pending", "draft")} | \
+             {i for p in queue if p["status"] in ("pending", "draft") for i in p.get("source_ids", [])}
     pool = [p for p in prompts if p["id"] not in recent]
     print(f"{len(prompts)} prompts utilisables, {len(pool)} pas encore publiés récemment.")
     if len(pool) < len(wanted):
@@ -148,6 +187,9 @@ def main():
         chosen.append(pick)
         last_cats = (last_cats + [cat])[-3:]
 
+    plan_reels(cfg, captions, queue, history, prompts, {c["id"] for c in chosen} |
+               {i for q in queue if q["status"] in ("pending", "draft") for i in q.get("source_ids", [])},
+               now, rng)
     for when, p in zip(wanted, chosen):
         stamp = when.strftime("%Y-%m-%dT%H:%M:00Z")
         print(f"- {stamp}  [{p['category']}] {p['title']}{' (premium)' if p['premium'] else ''}")

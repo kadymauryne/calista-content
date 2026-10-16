@@ -43,5 +43,28 @@
     "scheduled_at": "2026-10-23T12:00:00Z",
     "status": "pending",
     "source_id": "d5ZxD0Uc85SQPDlsoRre"
+  },
+  {
+    "id": "test-reel-001",
+    "type": "reel",
+    "caption": "Test réel : 3 visuels créés par IA. ✨\n\nRetrouve des prompts comme ceux-ci sur Calista, la galerie de prompts IA en contexte afro. Lien dans la bio.\n\n#CalistaApp #PromptIA #IAAfricaine",
+    "hook": "3 visuels créés par IA, sans studio",
+    "cta": "Copie les prompts gratuits",
+    "slides": [
+      {
+        "image": "images/auto/d5ZxD0Uc85SQPDlsoRre.jpg",
+        "text": "Pub brume visage"
+      },
+      {
+        "image": "images/auto/WGHLEfkehqho1bnlfTu7.jpg",
+        "text": "Marque de poudre de moringa bio"
+      },
+      {
+        "image": "images/auto/6GxIVmwFW7rkqkdFw2SL.jpg",
+        "text": "Page de garde Magasine 1"
+      }
+    ],
+    "scheduled_at": "2026-10-16T12:00:00Z",
+    "status": "draft"
   }
 ]

@@ -17,6 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - run: pip install pillow
       - name: Publier les posts dont l'heure est passée
         env:
           IG_TOKEN: ${{ secrets.IG_TOKEN }}

@@ -21,5 +21,22 @@
       "Un visuel créé par IA, avec un contexte afro. ✨\n\n« {titre} » : retrouve le prompt et fais ta propre version."
     ]
   },
-  "appel": "👉 Le prompt est sur Calista, la galerie de prompts IA en contexte afro. Lien dans la bio."
+  "appel": "👉 Le prompt est sur Calista, la galerie de prompts IA en contexte afro. Lien dans la bio.",
+  "reels": {
+    "hooks": {
+      "pub-produit": "5 pubs produit créées par IA, zéro shooting",
+      "portraits": "5 portraits IA ultra-réalistes",
+      "marque-logo": "5 identités de marque créées par IA",
+      "affiches-visuels": "5 affiches créées par IA en quelques minutes",
+      "_defaut": "5 visuels créés par IA, avec un contexte afro"
+    },
+    "captions": {
+      "pub-produit": "5 pubs produit, 0 studio photo. 🎯\n\nTout est généré par IA avec un prompt. Tu veux le même rendu pour ton produit ? Les prompts sont prêts à copier.",
+      "portraits": "5 portraits, 1 seul outil : le bon prompt. 📸\n\nTout est généré par IA, avec un contexte afro. Copie le prompt et fais ta version.",
+      "marque-logo": "5 identités de marque, créées en quelques minutes. 🔥\n\nUn bon prompt, et ta marque a une vraie allure.",
+      "affiches-visuels": "5 affiches, 5 ambiances. 🎬\n\nTout est généré par IA. Inspire-toi, copie le prompt, adapte-le à ton événement.",
+      "_defaut": "5 visuels créés par IA, avec un contexte afro. ✨\n\nCopie les prompts et fais tes propres versions."
+    },
+    "cta": "Copie les prompts gratuits"
+  }
 }
