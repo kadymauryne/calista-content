@@ -1,10 +1,12 @@
 [
   {
-    "id": "exemple-001",
+    "id": "test-001",
     "type": "image",
-    "caption": "Exemple. Remplace-moi par une vraie légende.",
-    "images": ["images/exemple.jpg"],
-    "scheduled_at": "2099-01-01T09:00:00Z",
-    "status": "pending"
+    "caption": "1 photo. 5 styles. 1 fauteuil. 👑\n\nCe visuel a été créé par IA à partir d'un seul prompt, avec un contexte 100 % afro.\n\nTu veux un rendu comme celui-ci pour ta marque, ta boutique ou ton portrait pro ?\nRetrouve des prompts prêts à copier sur Calista, la galerie de prompts IA en contexte afro.\n\n👉 Le lien est dans la bio.\n\n#CalistaApp #PromptIA #IAAfricaine #CreativeIA #AbidjanCreatives #CoteDIvoire #MidjourneyPrompt #ContenuIA #EntrepreneurIvoirien",
+    "images": [
+      "images/test-001.jpg"
+    ],
+    "scheduled_at": "2026-10-16T11:10:00Z",
+    "status": "draft"
   }
 ]
