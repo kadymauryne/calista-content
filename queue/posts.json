@@ -48,8 +48,8 @@
     "id": "test-reel-001",
     "type": "reel",
     "caption": "Test réel : 3 visuels créés par IA. ✨\n\nRetrouve des prompts comme ceux-ci sur Calista, la galerie de prompts IA en contexte afro. Lien dans la bio.\n\n#CalistaApp #PromptIA #IAAfricaine",
-    "hook": "3 visuels créés par IA, sans studio",
-    "cta": "Copie les prompts gratuits",
+    "hook": "Ces visuels ? Zéro shooting. Juste un prompt.",
+    "cta": "Copie le prompt et crée le tien",
     "slides": [
       {
         "image": "images/auto/d5ZxD0Uc85SQPDlsoRre.jpg",
@@ -65,7 +65,6 @@
       }
     ],
     "scheduled_at": "2026-10-16T14:00:00Z",
-    "status": "failed",
-    "error": "Command '['/usr/bin/python3', '/home/runner/work/calista-content/calista-content/scripts/build_reel.py', '/tmp/tmp4n_z4y0u/spec.json', '/tmp/tmp4n_z4y0u/reel.mp4']' returned non-zero exit status 1."
+    "status": "draft"
   }
 ]

@@ -86,29 +86,54 @@ def rounded(im, radius):
     return out
 
 
-def slide_frame(src, text, index, total, hook=None):
+def pill(d, text, fnt, cy, fill, color, pad_x=44, pad_y=22, max_w=960):
+    """Bandeau arrondi centré, 1 à 2 lignes. Renvoie le bas du bandeau."""
+    lines = wrap(d, clean(text), fnt, max_w - 2 * pad_x)
+    lh = fnt.size + 10
+    h = lh * len(lines) + 2 * pad_y
+    w = max(d.textlength(l, font=fnt) for l in lines) + 2 * pad_x
+    x0, y0 = (W - w) / 2, cy - h / 2
+    d.rounded_rectangle((x0, y0, x0 + w, y0 + h), radius=min(48, h / 2), fill=fill)
+    y = y0 + pad_y - 6
+    for l in lines:
+        d.text(((W - d.textlength(l, font=fnt)) / 2, y), l, font=fnt, fill=color)
+        y += lh
+    return y0 + h
+
+
+def slide_frame(src, text, index, total, hook=None, cta_line="Prompts gratuits sur CALISTA"):
+    """Une image du montage : accroche en haut, image au centre, appel à l'action en bas,
+    visibles sur CHAQUE image (on ne sait pas quand la personne arrête de regarder)."""
     img = open_image(src)
     bg = img.copy()
     scale = max(W / bg.width, H / bg.height)
     bg = bg.resize((round(bg.width * scale), round(bg.height * scale)))
     left, top = (bg.width - W) // 2, (bg.height - H) // 2
     bg = bg.crop((left, top, left + W, top + H)).filter(ImageFilter.GaussianBlur(45))
-    bg = Image.eval(bg, lambda p: int(p * 0.6))
+    bg = Image.eval(bg, lambda p: int(p * 0.55))
     frame = bg.convert("RGBA")
+    d = ImageDraw.Draw(frame)
 
-    max_w, max_h = 960, 1080
+    # Accroche (zone sûre : sous l'en-tête d'Instagram)
+    big = index == 1
+    if hook:
+        pill(d, hook, font(64 if big else 50), 300 if big else 280, SUN, GREEN_DEEP)
+
+    # Image
+    max_w, max_h = 900, 900
     s = min(max_w / img.width, max_h / img.height)
     fg = rounded(img.resize((round(img.width * s), round(img.height * s))).convert("RGBA"), 36)
-    fx, fy = (W - fg.width) // 2, 430 + (max_h - fg.height) // 2
+    fx, fy = (W - fg.width) // 2, 460 + (max_h - fg.height) // 2
     frame.alpha_composite(fg, (fx, fy))
-
     d = ImageDraw.Draw(frame)
-    if hook:
-        centered(d, hook, font(62), 210, WHITE, max_w=940, spacing=10)
-    else:
-        centered(d, f"{index}/{total}", font(56), 270, GOLD)
-    if text:
-        centered(d, text, font(50), 1570, WHITE, max_w=900, spacing=10)
+
+    # Titre du prompt + compteur
+    label = f"{index}/{total}  ·  {text}" if text else f"{index}/{total}"
+    centered(d, label, font(42), 1395, WHITE, max_w=920, spacing=8)
+
+    # Appel à l'action permanent (au-dessus de la légende d'Instagram)
+    pill(d, cta_line, font(46), 1545, GREEN_DEEP, WHITE, pad_y=18)
+    centered(d, "lien en bio", font(44), 1610, SUN, shadow=True)
     return frame.convert("RGB")
 
 
@@ -154,7 +179,8 @@ def cta_card(cta):
     y = line("CALISTA", font(130), 90, GREEN_DEEP)
     y = line("Galerie de prompts IA", font(50, bold=False), y + 10, (40, 40, 40))
     y = line("contexte afro", font(50, bold=False), y, (40, 40, 40))
-    y = line(cta, font(58), y + 50, ORANGE)
+    y = line(cta, font(58), y + 40, ORANGE)
+    y = line("calista-app.netlify.app", font(40, bold=False), y + 6, GREEN_DEEP)
     bw, bh, by = 520, 120, ch - 200
     d.rounded_rectangle(((cw - bw) / 2, by, (cw + bw) / 2, by + bh), radius=60, fill=GREEN_DEEP)
     f = font(56)
@@ -232,7 +258,9 @@ def cta_frames(cta, n_frames, seed=3):
 
 
 def run(cmd):
-    subprocess.run(cmd, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.PIPE)
+    r = subprocess.run(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.PIPE, text=True)
+    if r.returncode != 0:
+        raise RuntimeError(f"{cmd[0]} a échoué : {r.stderr[-600:]}")
 
 
 def main(spec_path, out_path):
@@ -242,8 +270,8 @@ def main(spec_path, out_path):
     tmp = tempfile.mkdtemp(prefix="reel-")
     try:
         clips, total = [], len(slides)
-        frames = [slide_frame(s["image"], s.get("text", ""), i + 1, total,
-                              spec.get("hook") if i == 0 else None)
+        frames = [slide_frame(s["image"], s.get("text", ""), i + 1, total, spec.get("hook"),
+                              spec.get("cta_line", "Prompts gratuits sur CALISTA"))
                   for i, s in enumerate(slides)]
         durations = [SLIDE_SECONDS] * total
         for i, (fr, dur) in enumerate(zip(frames, durations)):

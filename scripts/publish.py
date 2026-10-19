@@ -90,7 +90,10 @@ def publish_montage_reel(post):
         spec, out = os.path.join(tmp, "spec.json"), os.path.join(tmp, "reel.mp4")
         with open(spec, "w", encoding="utf-8") as f:
             json.dump({k: post[k] for k in ("hook", "cta", "slides") if k in post}, f, ensure_ascii=False)
-        subprocess.run([sys.executable, os.path.join(here, "build_reel.py"), spec, out], check=True)
+        r = subprocess.run([sys.executable, os.path.join(here, "build_reel.py"), spec, out],
+                           capture_output=True, text=True)
+        if r.returncode != 0:
+            raise RuntimeError("Montage du réel impossible : " + (r.stderr or r.stdout)[-800:])
         c = call("POST", f"{USER_ID}/media", {"media_type": "REELS", "upload_type": "resumable",
                                               "caption": post.get("caption", ""), "share_to_feed": "true"})
         upload_reel(c, out)
@@ -146,7 +149,7 @@ def main():
             print(f"   publié: {post['ig_media_id']}")
         except Exception as e:  # on garde la trace et on passe au suivant
             post["status"] = "failed"
-            post["error"] = str(e)[:500]
+            post["error"] = str(e)[:1200]
             failed = True
             print(f"   ÉCHEC: {e}", file=sys.stderr)
         with open(QUEUE, "w", encoding="utf-8") as f:

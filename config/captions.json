@@ -24,11 +24,11 @@
   "appel": "👉 Le prompt est sur Calista, la galerie de prompts IA en contexte afro. Lien dans la bio.",
   "reels": {
     "hooks": {
-      "pub-produit": "5 pubs produit créées par IA, zéro shooting",
-      "portraits": "5 portraits IA ultra-réalistes",
-      "marque-logo": "5 identités de marque créées par IA",
-      "affiches-visuels": "5 affiches créées par IA en quelques minutes",
-      "_defaut": "5 visuels créés par IA, avec un contexte afro"
+      "pub-produit": "Ces pubs ? Zéro shooting. Juste un prompt.",
+      "portraits": "Ces portraits ? Juste un prompt IA.",
+      "marque-logo": "Ta marque peut avoir ce rendu. Le prompt est sur Calista.",
+      "affiches-visuels": "Ces affiches ? Faites avec un simple prompt.",
+      "_defaut": "Ces visuels ? Juste un prompt IA."
     },
     "captions": {
       "pub-produit": "5 pubs produit, 0 studio photo. 🎯\n\nTout est généré par IA avec un prompt. Tu veux le même rendu pour ton produit ? Les prompts sont prêts à copier.",
@@ -37,6 +37,6 @@
       "affiches-visuels": "5 affiches, 5 ambiances. 🎬\n\nTout est généré par IA. Inspire-toi, copie le prompt, adapte-le à ton événement.",
       "_defaut": "5 visuels créés par IA, avec un contexte afro. ✨\n\nCopie les prompts et fais tes propres versions."
     },
-    "cta": "Copie les prompts gratuits"
+    "cta": "Copie le prompt et crée le tien"
   }
 }
