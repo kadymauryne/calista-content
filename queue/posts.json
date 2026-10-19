@@ -65,6 +65,9 @@
       }
     ],
     "scheduled_at": "2026-10-19T11:00:00Z",
-    "status": "pending"
+    "status": "published",
+    "video_url": "https://cdn.jsdelivr.net/gh/kadymauryne/calista-content@e76a2b2895540abaf4a62a49ac24c41a822b5a7a/videos/test-reel-001.mp4",
+    "ig_media_id": "18116806082005055",
+    "published_at": "2026-10-19T11:53:39+00:00"
   }
 ]
