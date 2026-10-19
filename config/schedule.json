@@ -16,7 +16,12 @@
   ],
   "hashtags": "#CalistaApp #PromptIA #IAAfricaine #CreativeIA #AbidjanCreatives #CoteDIvoire #ContenuIA #EntrepreneurIvoirien",
   "cooldown_days": 90,
-  "reel_slots": [],
+  "reel_slots": [
+    {
+      "weekday": 5,
+      "time": "18:00"
+    }
+  ],
   "reel_images": 5,
-  "_reels": "Pour activer 1 réel par semaine, mets reel_slots à : [{\"weekday\": 5, \"time\": \"18:00\"}] (samedi 18 h)."
+  "_reels": "1 réel par semaine, le samedi à 18 h (heure d'Abidjan). Mettre [] pour désactiver."
 }
