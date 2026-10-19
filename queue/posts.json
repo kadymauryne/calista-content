@@ -19,8 +19,10 @@
       "images/auto/WGHLEfkehqho1bnlfTu7.jpg"
     ],
     "scheduled_at": "2026-10-19T12:00:00Z",
-    "status": "pending",
-    "source_id": "WGHLEfkehqho1bnlfTu7"
+    "status": "published",
+    "source_id": "WGHLEfkehqho1bnlfTu7",
+    "ig_media_id": "18013782221992771",
+    "published_at": "2026-10-19T12:53:37+00:00"
   },
   {
     "id": "auto-20261021-1900",
