@@ -52,7 +52,7 @@ def call(method, path, params):
         raise RuntimeError(f"Instagram a répondu {e.code}: {body}") from None
 
 
-def wait_ready(container_id, tries=30):
+def wait_ready(container_id, tries=40):
     for _ in range(tries):
         status = call("GET", container_id, {"fields": "status_code,status"})
         code = status.get("status_code")
@@ -69,35 +69,56 @@ def publish_container(container_id):
     return call("POST", f"{USER_ID}/media_publish", {"creation_id": container_id})["id"]
 
 
-def upload_reel(container, path):
-    """Envoi direct du fichier vidéo à Instagram (pas besoin d'adresse publique)."""
-    size = os.path.getsize(path)
-    uri = container.get("uri") or f"https://rupload.facebook.com/ig-api-upload/v21.0/{container['id']}"
-    with open(path, "rb") as f:
-        data = f.read()
-    req = urllib.request.Request(uri, data=data, method="POST", headers={
-        "Authorization": f"OAuth {TOKEN}", "offset": "0", "file_size": str(size)})
-    try:
-        with urllib.request.urlopen(req, timeout=300) as r:
-            r.read()
-    except urllib.error.HTTPError as e:
-        raise RuntimeError(f"Envoi de la vidéo refusé {e.code}: {e.read().decode(errors='replace')}") from None
+def git(*args):
+    root = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
+    r = subprocess.run(["git", "-c", "user.name=calista-bot",
+                        "-c", "user.email=calista-bot@users.noreply.github.com", *args],
+                       cwd=root, capture_output=True, text=True)
+    if r.returncode != 0:
+        raise RuntimeError(f"git {' '.join(args)} : {r.stderr[-400:]}")
+    return r.stdout.strip()
 
 
 def publish_montage_reel(post):
+    """Fabrique la vidéo, la dépose dans le dépôt public, puis donne à Instagram une adresse web
+    (Instagram exige video_url avec ce type de connexion)."""
     here = os.path.dirname(os.path.abspath(__file__))
+    root = os.path.join(here, "..")
+    rel = f"videos/{post['id']}.mp4"
+    out = os.path.join(root, rel)
+    os.makedirs(os.path.dirname(out), exist_ok=True)
     with tempfile.TemporaryDirectory() as tmp:
-        spec, out = os.path.join(tmp, "spec.json"), os.path.join(tmp, "reel.mp4")
+        spec = os.path.join(tmp, "spec.json")
         with open(spec, "w", encoding="utf-8") as f:
-            json.dump({k: post[k] for k in ("hook", "cta", "slides") if k in post}, f, ensure_ascii=False)
+            json.dump({k: post[k] for k in ("hook", "cta", "cta_line", "slides") if k in post}, f,
+                      ensure_ascii=False)
         r = subprocess.run([sys.executable, os.path.join(here, "build_reel.py"), spec, out],
                            capture_output=True, text=True)
         if r.returncode != 0:
             raise RuntimeError("Montage du réel impossible : " + (r.stderr or r.stdout)[-800:])
-        c = call("POST", f"{USER_ID}/media", {"media_type": "REELS", "upload_type": "resumable",
-                                              "caption": post.get("caption", ""), "share_to_feed": "true"})
-        upload_reel(c, out)
-        return publish_container(c["id"])
+    git("add", rel)
+    git("commit", "-m", f"Vidéo du réel {post['id']}")
+    git("pull", "--rebase", "origin", BRANCH)
+    git("push", "origin", f"HEAD:{BRANCH}")
+    sha = git("rev-parse", "HEAD")
+    candidates = [f"https://cdn.jsdelivr.net/gh/{REPO}@{sha}/{rel}", public_url(rel)]
+    errors = []
+    for url in candidates:
+        try:
+            c = call("POST", f"{USER_ID}/media", {"media_type": "REELS", "video_url": url,
+                                                  "caption": post.get("caption", ""),
+                                                  "share_to_feed": "true"})
+            media_id = publish_container(c["id"])
+            post["video_url"] = url
+            try:
+                os.remove(out)          # la vidéo n'est plus utile une fois publiée
+            except OSError:
+                pass
+            return media_id
+        except Exception as e:
+            errors.append(f"{url} -> {e}")
+            print(f"   tentative échouée : {url} ({str(e)[:200]})")
+    raise RuntimeError(" | ".join(errors)[:1100])
 
 
 def publish(post):

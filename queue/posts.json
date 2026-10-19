@@ -65,7 +65,6 @@
       }
     ],
     "scheduled_at": "2026-10-19T11:00:00Z",
-    "status": "failed",
-    "error": "Instagram a répondu 400: {\"error\":{\"message\":\"The parameter video_url is required\",\"type\":\"IGApiException\",\"code\":100,\"fbtrace_id\":\"Ancg-bgnGqku1OgbgF5aySa\"}}"
+    "status": "pending"
   }
 ]
