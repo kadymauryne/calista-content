@@ -32,8 +32,10 @@
       "images/auto/6GxIVmwFW7rkqkdFw2SL.jpg"
     ],
     "scheduled_at": "2026-10-21T19:00:00Z",
-    "status": "pending",
-    "source_id": "6GxIVmwFW7rkqkdFw2SL"
+    "status": "published",
+    "source_id": "6GxIVmwFW7rkqkdFw2SL",
+    "ig_media_id": "17987034609065963",
+    "published_at": "2026-10-21T19:00:53+00:00"
   },
   {
     "id": "auto-20261023-1200",
