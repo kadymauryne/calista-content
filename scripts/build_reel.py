@@ -101,7 +101,7 @@ def pill(d, text, fnt, cy, fill, color, pad_x=44, pad_y=22, max_w=960):
     return y0 + h
 
 
-def slide_frame(src, text, index, total, hook=None, cta_line="Prompts gratuits sur CALISTA"):
+def slide_frame(src, text, index, total, hook=None, cta_line="Prompts gratuits sur Calista"):
     """Une image du montage : accroche en haut, image au centre, appel à l'action en bas,
     visibles sur CHAQUE image (on ne sait pas quand la personne arrête de regarder)."""
     img = open_image(src)
@@ -137,11 +137,13 @@ def slide_frame(src, text, index, total, hook=None, cta_line="Prompts gratuits s
     return frame.convert("RGB")
 
 
-GREEN_LIGHT = (46, 184, 92)
-GREEN_DEEP = (12, 120, 62)
-SUN = (255, 207, 51)
-SUN_RAY = (255, 170, 30)
-CREAM = (255, 249, 232)
+# Couleurs du logo Calista (vert #047947, or #DBAC3E, crème #FEFBF4)
+GREEN_LIGHT = (38, 168, 104)
+GREEN_DEEP = (4, 121, 71)
+SUN = (232, 186, 70)
+SUN_RAY = (219, 172, 62)
+CREAM = (254, 251, 244)
+LOGO = os.path.join(ROOT, "assets", "brand", "logo-calista-transparent.png")
 ORANGE = (255, 122, 0)
 CONFETTI = [(255, 207, 51), (255, 122, 0), (255, 255, 255), (255, 92, 141), (178, 255, 89), (0, 200, 255)]
 
@@ -163,7 +165,7 @@ def green_background():
 
 
 def cta_card(cta):
-    cw, ch = 860, 860
+    cw, ch = 860, 1000
     card = Image.new("RGBA", (cw, ch), (0, 0, 0, 0))
     d = ImageDraw.Draw(card)
     d.rounded_rectangle((0, 0, cw, ch), radius=60, fill=CREAM)
@@ -176,12 +178,19 @@ def cta_card(cta):
             y += fnt.size + 12
         return y
 
-    y = line("CALISTA", font(130), 90, GREEN_DEEP)
+    if os.path.exists(LOGO):
+        logo = Image.open(LOGO).convert("RGBA")
+        lh = 330
+        logo = logo.resize((round(logo.width * lh / logo.height), lh), Image.LANCZOS)
+        card.alpha_composite(logo, ((cw - logo.width) // 2, 60))
+        y = 60 + lh + 10
+    else:
+        y = line("CALISTA", font(130), 90, GREEN_DEEP)
     y = line("Galerie de prompts IA", font(50, bold=False), y + 10, (40, 40, 40))
     y = line("contexte afro", font(50, bold=False), y, (40, 40, 40))
-    y = line(cta, font(58), y + 40, ORANGE)
+    y = line(cta, font(56), y + 30, ORANGE)
     y = line("calista-app.netlify.app", font(40, bold=False), y + 6, GREEN_DEEP)
-    bw, bh, by = 520, 120, ch - 200
+    bw, bh, by = 520, 120, ch - 170
     d.rounded_rectangle(((cw - bw) / 2, by, (cw + bw) / 2, by + bh), radius=60, fill=GREEN_DEEP)
     f = font(56)
     txt = "Lien en bio"
@@ -195,7 +204,7 @@ def cta_frames(cta, n_frames, seed=3):
     rnd = random.Random(seed)
     bg = green_background()
     card = cta_card(cta)
-    sun_c = (W // 2, 520)
+    sun_c = (W // 2, 330)
     confetti = []
     for _ in range(90):                                   # pluie qui tombe d'en haut
         confetti.append({
@@ -251,7 +260,7 @@ def cta_frames(cta, n_frames, seed=3):
         shadow = Image.new("RGBA", (cw + 60, ch + 60), (0, 0, 0, 0))
         ImageDraw.Draw(shadow).rounded_rectangle((30, 40, cw + 30, ch + 40), radius=60, fill=(0, 0, 0, 70))
         shadow = shadow.filter(ImageFilter.GaussianBlur(18))
-        cx, cy = (W - cw) // 2, 1150 - ch // 2
+        cx, cy = (W - cw) // 2, 1090 - ch // 2
         fr.alpha_composite(shadow, (cx - 30, cy - 30))
         fr.alpha_composite(c, (cx, cy))
         yield fr.convert("RGB")
@@ -271,7 +280,7 @@ def main(spec_path, out_path):
     try:
         clips, total = [], len(slides)
         frames = [slide_frame(s["image"], s.get("text", ""), i + 1, total, spec.get("hook"),
-                              spec.get("cta_line", "Prompts gratuits sur CALISTA"))
+                              spec.get("cta_line", "Prompts gratuits sur Calista"))
                   for i, s in enumerate(slides)]
         durations = [SLIDE_SECONDS] * total
         for i, (fr, dur) in enumerate(zip(frames, durations)):
