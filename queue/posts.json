@@ -75,5 +75,84 @@
     "video_url": "https://cdn.jsdelivr.net/gh/kadymauryne/calista-content@e76a2b2895540abaf4a62a49ac24c41a822b5a7a/videos/test-reel-001.mp4",
     "ig_media_id": "18116806082005055",
     "published_at": "2026-10-19T11:53:39+00:00"
+  },
+  {
+    "id": "auto-20261026-1200",
+    "type": "image",
+    "scheduled_at": "2026-10-26T12:00:00Z",
+    "status": "pending",
+    "caption": "Le bon prompt change tout. 📸\n\n« Homme noir 6 » : généré par IA, avec le soin des détails qu'on attend d'un vrai shooting.\n\n👉 Le prompt est sur Calista, la galerie de prompts IA en contexte afro. Lien dans la bio.\n\n#CalistaApp #PromptIA #IAAfricaine #CreativeIA #AbidjanCreatives #CoteDIvoire #ContenuIA #EntrepreneurIvoirien",
+    "images": [
+      "images/auto/9tNHENT3nvNUUMjfCepY.jpg"
+    ],
+    "source_id": "9tNHENT3nvNUUMjfCepY"
+  },
+  {
+    "id": "auto-20261028-1900",
+    "type": "carousel",
+    "scheduled_at": "2026-10-28T19:00:00Z",
+    "status": "pending",
+    "caption": "IA + contexte afro = ces 4 affiches. 👀\n\nSwipe pour tout voir ➡️ Ton préféré, c'est lequel ?\n\n1. Affiche film\n2. Visuels Hotel\n3. Affiche livre\n4. Boisson 2\n\n👉 Le prompt est sur Calista, la galerie de prompts IA en contexte afro. Lien dans la bio.\n\n#CalistaApp #PromptIA #IAAfricaine #CreativeIA #AbidjanCreatives #CoteDIvoire #ContenuIA #EntrepreneurIvoirien",
+    "images": [
+      "images/auto/8fIMuAXlH3slPvzrcIsu.jpg",
+      "images/auto/mtT3IUPZbUrqHrBhbcLe.jpg",
+      "images/auto/OGrRr184viJrxc06F1iB.jpg",
+      "images/auto/KyFvnzmuLZsRjvuxWOqq.jpg"
+    ],
+    "source_ids": [
+      "8fIMuAXlH3slPvzrcIsu",
+      "mtT3IUPZbUrqHrBhbcLe",
+      "OGrRr184viJrxc06F1iB",
+      "KyFvnzmuLZsRjvuxWOqq"
+    ]
+  },
+  {
+    "id": "auto-20261030-1200",
+    "type": "image",
+    "scheduled_at": "2026-10-30T12:00:00Z",
+    "status": "pending",
+    "caption": "Pas de studio photo, pas de budget pub énorme. 🎯\n\n« Pub lait de corps 2 » a été généré par IA. Le même rendu est possible pour ton produit avec le bon prompt.\n\n👉 Le prompt est sur Calista, la galerie de prompts IA en contexte afro. Lien dans la bio.\n\n#CalistaApp #PromptIA #IAAfricaine #CreativeIA #AbidjanCreatives #CoteDIvoire #ContenuIA #EntrepreneurIvoirien",
+    "images": [
+      "images/auto/P0YemJhxzG2d6qShgfRZ.jpg"
+    ],
+    "source_id": "P0YemJhxzG2d6qShgfRZ"
+  },
+  {
+    "id": "reel-20261031-1800",
+    "type": "reel",
+    "scheduled_at": "2026-10-31T18:00:00Z",
+    "status": "pending",
+    "caption": "5 portraits, 1 seul outil : le bon prompt. 📸\n\nTout est généré par IA, avec un contexte afro. Copie le prompt et fais ta version.\n\n👉 Le prompt est sur Calista, la galerie de prompts IA en contexte afro. Lien dans la bio.\n\n#CalistaApp #PromptIA #IAAfricaine #CreativeIA #AbidjanCreatives #CoteDIvoire #ContenuIA #EntrepreneurIvoirien",
+    "hook": "Ces portraits ? Juste un prompt IA.",
+    "cta": "Copie le prompt et crée le tien",
+    "slides": [
+      {
+        "image": "https://firebasestorage.googleapis.com/v0/b/calista-75491.firebasestorage.app/o/prompts%2F1789658452837-Mini%20personnage%201.png?alt=media&token=816991af-f200-4786-b5d7-7121a4fc7f12",
+        "text": "Mini personnage 1"
+      },
+      {
+        "image": "https://firebasestorage.googleapis.com/v0/b/calista-75491.firebasestorage.app/o/prompts%2F1789650724740-Homme%20noir%201.png?alt=media&token=0651f579-047d-433c-a1df-395899d0acbf",
+        "text": "Homme noir 1"
+      },
+      {
+        "image": "https://firebasestorage.googleapis.com/v0/b/calista-75491.firebasestorage.app/o/prompts%2F1792864164126-Salon%20de%20th%C3%A9%20enchant%C3%A9%20aux%20p%C3%A2tisseries%20dor%C3%A9es.png?alt=media&token=625725aa-3ef4-4fbd-b90f-301bf9fc5316",
+        "text": "Jeune femme africaine 30"
+      },
+      {
+        "image": "https://firebasestorage.googleapis.com/v0/b/calista-75491.firebasestorage.app/o/prompts%2F1789658724181-Couple%201.png?alt=media&token=26a434cf-7985-4025-9387-a6025b4145f8",
+        "text": "Couple 1"
+      },
+      {
+        "image": "https://firebasestorage.googleapis.com/v0/b/calista-75491.firebasestorage.app/o/prompts%2F1789658184493-Homme%20noir%203.png?alt=media&token=85e92fef-78af-4331-8163-0cf685bcfa7e",
+        "text": "Homme noir 3"
+      }
+    ],
+    "source_ids": [
+      "6p1qDvjFS8mHC1wkr00T",
+      "1Y98oLHeh1KpyuvTCIBG",
+      "JPoxOXNOO8rfG8B4DgTQ",
+      "tTV113YOZ6tj60i3v9Qc",
+      "jAgIwiAgsMKWt0MHcXMj"
+    ]
   }
 ]
