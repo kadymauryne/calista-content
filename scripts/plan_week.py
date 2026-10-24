@@ -63,7 +63,7 @@ def fetch_prompts():
             return out
 
 
-def to_jpeg(url, dest):
+def to_jpeg(url, dest, force_45=False):
     """Télécharge l'image et la met en JPEG, format 4:5 minimum (exigé par Instagram)."""
     from io import BytesIO
     from PIL import Image, ImageFilter
@@ -72,6 +72,17 @@ def to_jpeg(url, dest):
         im = Image.open(BytesIO(r.read())).convert("RGB")
     w, h = im.size
     ratio = w / h
+    if force_45 and abs(ratio - 0.8) > 0.01:
+        if ratio > 0.8:                        # trop large : on rogne les côtés
+            new_w = round(h * 0.8)
+            left = (w - new_w) // 2
+            im = im.crop((left, 0, left + new_w, h))
+        else:                                  # trop haut : on rogne un peu plus en bas
+            new_h = round(w * 1.25)
+            top = (h - new_h) // 3
+            im = im.crop((0, top, w, top + new_h))
+        w, h = im.size
+        ratio = w / h
     if ratio < 0.8:
         if ratio >= 0.7:                       # presque bon : on rogne un peu, plus en bas
             new_h = round(w * 1.25)
@@ -111,102 +122,112 @@ def slots_for(start, weeks, slots):
     return sorted(out)
 
 
-def plan_reels(cfg, captions, queue, history, prompts, used_ids, now, rng):
-    """Un réel = montage de plusieurs images d'une même catégorie."""
-    n = cfg.get("reel_images", 5)
-    wanted = [d for d in slots_for(now, WEEKS, cfg.get("reel_slots", []))
-              if d.strftime("%Y-%m-%dT%H:%M:00Z") not in {p["scheduled_at"] for p in queue}]
-    cutoff = (now - timedelta(days=cfg["cooldown_days"])).isoformat()
-    recent_reel = {h["id"] for h in history if h["at"] >= cutoff and h.get("reel")}
-    for when in wanted:
-        free = [p for p in prompts if p["id"] not in used_ids and p["id"] not in recent_reel]
-        by_cat = {}
-        for p in free:
-            by_cat.setdefault(p["category"], []).append(p)
-        ok = [c for c, v in by_cat.items() if len(v) >= n]
-        if not ok:
-            print(f"Réel du {when:%d/%m} : pas assez d'images neuves dans une même catégorie.")
-            continue
-        cat = rng.choice(sorted(ok))
-        picks = rng.sample(by_cat[cat], n)
-        r = captions["reels"]
-        hook = r["hooks"].get(cat) or r["hooks"]["_defaut"]
-        cap = r["captions"].get(cat) or r["captions"]["_defaut"]
-        stamp = when.strftime("%Y-%m-%dT%H:%M:00Z")
-        print(f"- {stamp}  RÉEL [{cat}] " + ", ".join(p["title"] for p in picks))
-        used_ids |= {p["id"] for p in picks}
-        if DRY:
-            continue
-        queue.append({
-            "id": f"reel-{when.strftime('%Y%m%d-%H%M')}", "type": "reel",
-            "caption": f"{cap}\n\n{captions['appel']}\n\n{cfg['hashtags']}",
-            "hook": hook, "cta": r["cta"],
-            "slides": [{"image": p["image"], "text": p["title"]} for p in picks],
-            "scheduled_at": stamp, "status": "pending",
-            "source_ids": [p["id"] for p in picks]})
-        for p in picks:
-            history.append({"id": p["id"], "category": cat, "reel": True,
-                            "at": now.isoformat(timespec="seconds")})
+CAT_LABELS = {"pub-produit": "pubs produit", "portraits": "portraits", "marque-logo": "logos et identités de marque",
+              "affiches-visuels": "affiches"}
+
+
+def pick_category(pool, taken, need, last_cats, rng):
+    """Catégorie tirée au sort en proportion de son stock (70 portraits pèsent plus que 5 logos),
+    en évitant si possible les dernières catégories publiées."""
+    stock = {}
+    for p in pool:
+        if p["id"] not in taken:
+            stock[p["category"]] = stock.get(p["category"], 0) + 1
+    ok = {c: n for c, n in stock.items() if n >= need}
+    fresh = {c: n for c, n in ok.items() if c not in last_cats} or ok
+    if not fresh:
+        return None
+    cats = sorted(fresh)
+    return rng.choices(cats, weights=[fresh[c] for c in cats])[0]
+
+
+def take(pool, cat, n, taken, rng):
+    cand = [p for p in pool if p["category"] == cat and p["id"] not in taken]
+    picks = rng.sample(cand, n)
+    taken |= {p["id"] for p in picks}
+    return picks
 
 
 def main():
     cfg, captions, exclude = load("config/schedule.json"), load("config/captions.json"), load("config/exclude.json")
     queue, history = load("queue/posts.json"), load("queue/history.json")
     now = datetime.now(timezone.utc)
+    queued = {p["scheduled_at"] for p in queue}
 
-    queued_slots = {p["scheduled_at"] for p in queue}
-    wanted = [d for d in slots_for(now, WEEKS, cfg["slots"])
-              if d.strftime("%Y-%m-%dT%H:%M:00Z") not in queued_slots]
-    if not wanted and not cfg.get("reel_slots"):
+    # Créneaux à remplir : posts (image ou carrousel) et réels
+    todo = []
+    for s in cfg["slots"]:
+        for d in slots_for(now, WEEKS, [s]):
+            todo.append((d, s.get("type", "image"), s.get("images", 1)))
+    for d in slots_for(now, WEEKS, cfg.get("reel_slots", [])):
+        todo.append((d, "reel", cfg.get("reel_images", 5)))
+    todo = sorted(t for t in todo if t[0].strftime("%Y-%m-%dT%H:%M:00Z") not in queued)
+    if not todo:
         print("Rien à planifier : tous les créneaux sont déjà remplis.")
         return 0
 
     prompts = [p for p in fetch_prompts() if p["title"] and p["image"].startswith("http")
                and p["id"] not in exclude["ids"]]
+    # Une image ne revient pas avant cooldown_days, qu'elle ait servi en post, carrousel ou réel
     cutoff = (now - timedelta(days=cfg["cooldown_days"])).isoformat()
-    recent = {h["id"] for h in history if h["at"] >= cutoff} | \
-             {p["source_id"] for p in queue if p.get("source_id") and p["status"] in ("pending", "draft")} | \
-             {i for p in queue if p["status"] in ("pending", "draft") for i in p.get("source_ids", [])}
+    recent = {h["id"] for h in history if h["at"] >= cutoff}
+    for q in queue:
+        if q["status"] in ("pending", "draft"):
+            recent |= {q.get("source_id")} | set(q.get("source_ids", []))
     pool = [p for p in prompts if p["id"] not in recent]
-    print(f"{len(prompts)} prompts utilisables, {len(pool)} pas encore publiés récemment.")
-    if len(pool) < len(wanted):
-        print("Pas assez de prompts neufs : on recycle les plus anciens.")
-        pool = prompts
+    need = sum(n for _, _, n in todo)
+    print(f"{len(prompts)} prompts utilisables, {len(pool)} pas encore publiés depuis {cfg['cooldown_days']} jours, "
+          f"{need} nécessaires.")
+    if len(pool) < need:
+        last_use = {}
+        for h in history:
+            last_use[h["id"]] = max(last_use.get(h["id"], ""), h["at"])
+        pool = sorted(prompts, key=lambda p: last_use.get(p["id"], ""))[:max(need * 2, len(pool))]
+        print("Stock neuf insuffisant : on reprend les images publiées il y a le plus longtemps.")
 
     rng = random.Random(now.strftime("%Y-%m-%d"))
-    last_cats = [h["category"] for h in history[-3:]]
-    chosen = []
-    for _ in wanted:
-        cats = sorted({p["category"] for p in pool if p["id"] not in {c["id"] for c in chosen}})
-        fresh = [c for c in cats if c not in last_cats] or cats
-        if not fresh:
-            break
-        cat = rng.choice(fresh)
-        cand = [p for p in pool if p["category"] == cat and p["id"] not in {c["id"] for c in chosen}]
-        pick = rng.choice(cand)
-        chosen.append(pick)
-        last_cats = (last_cats + [cat])[-3:]
-
-    plan_reels(cfg, captions, queue, history, prompts, {c["id"] for c in chosen} |
-               {i for q in queue if q["status"] in ("pending", "draft") for i in q.get("source_ids", [])},
-               now, rng)
-    for when, p in zip(wanted, chosen):
+    last_cats = [h["category"] for h in history[-2:]]
+    taken = set()
+    r = captions["reels"]
+    for when, kind, n in todo:
         stamp = when.strftime("%Y-%m-%dT%H:%M:00Z")
-        print(f"- {stamp}  [{p['category']}] {p['title']}{' (premium)' if p['premium'] else ''}")
+        cat = pick_category(pool, taken, n, last_cats, rng)
+        if not cat:
+            print(f"- {stamp}  {kind} : pas assez d'images neuves, créneau laissé vide.")
+            continue
+        picks = take(pool, cat, n, taken, rng)
+        last_cats = (last_cats + [cat])[-2:]
+        print(f"- {stamp}  {kind.upper()} [{cat}] " + " | ".join(p["title"] for p in picks))
         if DRY:
             continue
-        rel = f"images/auto/{p['id']}.jpg"
-        to_jpeg(p["image"], os.path.join(ROOT, rel))
-        queue.append({
-            "id": f"auto-{when.strftime('%Y%m%d-%H%M')}",
-            "type": "image",
-            "caption": make_caption(p, captions, cfg["hashtags"], rng),
-            "images": [rel],
-            "scheduled_at": stamp,
-            "status": "pending",
-            "source_id": p["id"],
-        })
-        history.append({"id": p["id"], "category": p["category"], "at": now.isoformat(timespec="seconds")})
+        ids = [p["id"] for p in picks]
+        entry = {"id": f"{'reel' if kind == 'reel' else 'auto'}-{when.strftime('%Y%m%d-%H%M')}",
+                 "type": kind, "scheduled_at": stamp, "status": "pending"}
+        if kind == "reel":
+            entry.update({
+                "caption": f"{r['captions'].get(cat) or r['captions']['_defaut']}\n\n{captions['appel']}\n\n{cfg['hashtags']}",
+                "hook": r["hooks"].get(cat) or r["hooks"]["_defaut"], "cta": r["cta"],
+                "slides": [{"image": p["image"], "text": p["title"]} for p in picks], "source_ids": ids})
+        else:
+            rels = []
+            for p in picks:
+                rel = f"images/auto/{p['id']}.jpg"
+                to_jpeg(p["image"], os.path.join(ROOT, rel), force_45=(kind == "carousel"))
+                rels.append(rel)
+            if kind == "carousel":
+                c = captions["carousel"]
+                label = CAT_LABELS.get(cat, "visuels")
+                body = rng.choice(c["modeles"]).replace("{n}", str(n)).replace("{categorie}", label)
+                titres = "\n".join(f"{i + 1}. {p['title']}" for i, p in enumerate(picks))
+                entry.update({"caption": f"{body}\n\n{titres}\n\n{captions['appel']}\n\n{cfg['hashtags']}",
+                              "images": rels, "source_ids": ids})
+            else:
+                entry.update({"caption": make_caption(picks[0], captions, cfg["hashtags"], rng),
+                              "images": rels, "source_id": ids[0]})
+        queue.append(entry)
+        for p in picks:
+            history.append({"id": p["id"], "category": cat, "reel": kind == "reel",
+                            "at": now.isoformat(timespec="seconds")})
     if not DRY:
         save("queue/posts.json", queue)
         save("queue/history.json", history)

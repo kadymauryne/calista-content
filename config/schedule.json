@@ -1,5 +1,5 @@
 {
-  "_aide": "weekday: 0=lundi ... 6=dimanche. Heures en UTC (= heure d'Abidjan).",
+  "_aide": "weekday: 0=lundi ... 6=dimanche. Heures = heure d'Abidjan. type: image (défaut) ou carousel (avec images: nombre).",
   "slots": [
     {
       "weekday": 0,
@@ -7,7 +7,9 @@
     },
     {
       "weekday": 2,
-      "time": "19:00"
+      "time": "19:00",
+      "type": "carousel",
+      "images": 4
     },
     {
       "weekday": 4,

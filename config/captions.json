@@ -38,5 +38,13 @@
       "_defaut": "5 visuels créés par IA, avec un contexte afro. ✨\n\nCopie les prompts et fais tes propres versions."
     },
     "cta": "Copie le prompt et crée le tien"
+  },
+  "carousel": {
+    "_aide": "Légendes des carrousels. {n} = nombre d'images, {categorie} = type de visuels.",
+    "modeles": [
+      "IA + contexte afro = ces {n} {categorie}. 👀\n\nSwipe pour tout voir ➡️ Ton préféré, c'est lequel ?",
+      "Ton préféré : 1, 2, 3 ou 4 ? 👇\n\n{n} {categorie} à reproduire avec un simple prompt.",
+      "Zéro shooting, zéro studio. Juste {n} prompts. ✨\n\nSwipe ➡️ et dis-nous en commentaire ton préféré."
+    ]
   }
 }
