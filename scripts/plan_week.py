@@ -8,6 +8,7 @@ Utilise Pillow pour convertir les images en JPEG au bon format.
 import json
 import os
 import random
+import re
 import sys
 import urllib.parse
 import urllib.request
@@ -73,14 +74,11 @@ def to_jpeg(url, dest, force_45=False):
     w, h = im.size
     ratio = w / h
     if force_45 and abs(ratio - 0.8) > 0.01:
-        if ratio > 0.8:                        # trop large : on rogne les côtés
-            new_w = round(h * 0.8)
-            left = (w - new_w) // 2
-            im = im.crop((left, 0, left + new_w, h))
-        else:                                  # trop haut : on rogne un peu plus en bas
-            new_h = round(w * 1.25)
-            top = (h - new_h) // 3
-            im = im.crop((0, top, w, top + new_h))
+        # Image entière posée sur un fond flou au format 4:5 : on ne coupe jamais le texte d'une affiche
+        cw, ch = (w, round(w * 1.25)) if ratio > 0.8 else (round(h * 0.8), h)
+        bg = im.resize((cw, ch)).filter(ImageFilter.GaussianBlur(40))
+        bg.paste(im, ((cw - w) // 2, (ch - h) // 2))
+        im = bg
         w, h = im.size
         ratio = w / h
     if ratio < 0.8:
@@ -102,9 +100,14 @@ def to_jpeg(url, dest, force_45=False):
     im.save(dest, "JPEG", quality=90, optimize=True)
 
 
+def clean_title(t):
+    """« Homme noir 6 » -> « Homme noir » : les numéros internes de la galerie ne vont pas sur Instagram."""
+    return re.sub(r"\s*\d+\s*$", "", t or "").strip() or t
+
+
 def make_caption(p, captions, hashtags, rng):
     models = captions["categories"].get(p["category"]) or captions["categories"]["_defaut"]
-    body = rng.choice(models).replace("{titre}", p["title"])
+    body = rng.choice(models).replace("{titre}", clean_title(p["title"]))
     extra = "\n(Prompt premium)" if p["premium"] else ""
     return f"{body}\n\n{captions['appel']}{extra}\n\n{hashtags}"
 
@@ -207,7 +210,7 @@ def main():
             entry.update({
                 "caption": f"{r['captions'].get(cat) or r['captions']['_defaut']}\n\n{captions['appel']}\n\n{cfg['hashtags']}",
                 "hook": r["hooks"].get(cat) or r["hooks"]["_defaut"], "cta": r["cta"],
-                "slides": [{"image": p["image"], "text": p["title"]} for p in picks], "source_ids": ids})
+                "slides": [{"image": p["image"], "text": clean_title(p["title"])} for p in picks], "source_ids": ids})
         else:
             rels = []
             for p in picks:
@@ -218,7 +221,7 @@ def main():
                 c = captions["carousel"]
                 label = CAT_LABELS.get(cat, "visuels")
                 body = rng.choice(c["modeles"]).replace("{n}", str(n)).replace("{categorie}", label)
-                titres = "\n".join(f"{i + 1}. {p['title']}" for i, p in enumerate(picks))
+                titres = "\n".join(f"{i + 1}. {clean_title(p['title'])}" for i, p in enumerate(picks))
                 entry.update({"caption": f"{body}\n\n{titres}\n\n{captions['appel']}\n\n{cfg['hashtags']}",
                               "images": rels, "source_ids": ids})
             else:
