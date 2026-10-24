@@ -5,7 +5,7 @@ on:
     inputs:
       dry_run:
         description: "Test à blanc (n'écrit rien) : 1 = oui, 0 = non"
-        default: "1"
+        default: "0"
   schedule:
     - cron: "0 20 * * 0"     # chaque dimanche à 20 h (heure d'Abidjan = UTC)
 
