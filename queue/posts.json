@@ -163,5 +163,84 @@
     ],
     "ig_media_id": "18221955166355595",
     "published_at": "2026-10-28T19:01:04+00:00"
+  },
+  {
+    "id": "auto-20261102-1200",
+    "type": "image",
+    "scheduled_at": "2026-11-02T12:00:00Z",
+    "status": "pending",
+    "caption": "Le bon prompt change tout. 📸\n\n« Jeune femme africaine » : généré par IA, avec le soin des détails qu'on attend d'un vrai shooting.\n\n👉 Le prompt est sur Calista, la galerie de prompts IA en contexte afro. Lien dans la bio.\n\n#CalistaApp #PromptIA #IAAfricaine #CreativeIA #AbidjanCreatives #CoteDIvoire #ContenuIA #EntrepreneurIvoirien",
+    "images": [
+      "images/auto/mo2pQSvOaWc8jana3x84.jpg"
+    ],
+    "source_id": "mo2pQSvOaWc8jana3x84"
+  },
+  {
+    "id": "auto-20261104-1900",
+    "type": "carousel",
+    "scheduled_at": "2026-11-04T19:00:00Z",
+    "status": "pending",
+    "caption": "Zéro shooting, zéro studio. Juste 4 prompts. ✨\n\nSwipe ➡️ et dis-nous en commentaire ton préféré.\n\n1. Huile de cheveux\n2. Affiche tech\n3. Affiche garba\n4. Boisson\n\n👉 Le prompt est sur Calista, la galerie de prompts IA en contexte afro. Lien dans la bio.\n\n#CalistaApp #PromptIA #IAAfricaine #CreativeIA #AbidjanCreatives #CoteDIvoire #ContenuIA #EntrepreneurIvoirien",
+    "images": [
+      "images/auto/17I3CYjldiSzdf9nJBMl.jpg",
+      "images/auto/n5TaT9c3hwvHUGZUUaYm.jpg",
+      "images/auto/aZzrWrgzVimeOFQvzpep.jpg",
+      "images/auto/KyFvnzmuLZsRjvuxWOqq.jpg"
+    ],
+    "source_ids": [
+      "17I3CYjldiSzdf9nJBMl",
+      "n5TaT9c3hwvHUGZUUaYm",
+      "aZzrWrgzVimeOFQvzpep",
+      "KyFvnzmuLZsRjvuxWOqq"
+    ]
+  },
+  {
+    "id": "auto-20261106-1200",
+    "type": "image",
+    "scheduled_at": "2026-11-06T12:00:00Z",
+    "status": "pending",
+    "caption": "Une pub produit qui donne envie, créée par IA. ✨\n\n« Pub Restaurant » : un visuel qui vend, sans shooting ni studio.\nTu as un produit à mettre en valeur ? Copie le prompt, adapte-le à ta marque, et c'est parti.\n\n👉 Le prompt est sur Calista, la galerie de prompts IA en contexte afro. Lien dans la bio.\n(Prompt premium)\n\n#CalistaApp #PromptIA #IAAfricaine #CreativeIA #AbidjanCreatives #CoteDIvoire #ContenuIA #EntrepreneurIvoirien",
+    "images": [
+      "images/auto/8PNRUUp9l80pmMFR9AiW.jpg"
+    ],
+    "source_id": "8PNRUUp9l80pmMFR9AiW"
+  },
+  {
+    "id": "reel-20261107-1800",
+    "type": "reel",
+    "scheduled_at": "2026-11-07T18:00:00Z",
+    "status": "pending",
+    "caption": "5 portraits, 1 seul outil : le bon prompt. 📸\n\nTout est généré par IA, avec un contexte afro. Copie le prompt et fais ta version.\n\n👉 Le prompt est sur Calista, la galerie de prompts IA en contexte afro. Lien dans la bio.\n\n#CalistaApp #PromptIA #IAAfricaine #CreativeIA #AbidjanCreatives #CoteDIvoire #ContenuIA #EntrepreneurIvoirien",
+    "hook": "Ces portraits ? Juste un prompt IA.",
+    "cta": "Copie le prompt et crée le tien",
+    "slides": [
+      {
+        "image": "https://firebasestorage.googleapis.com/v0/b/calista-75491.firebasestorage.app/o/prompts%2F1790203000546-1000428672.png?alt=media&token=658e1f1d-9e8a-4b25-9c1d-f6d1f900ca86",
+        "text": "Homme noir"
+      },
+      {
+        "image": "https://firebasestorage.googleapis.com/v0/b/calista-75491.firebasestorage.app/o/prompts%2F1789715060959-1000420041.png?alt=media&token=03951a46-c94c-484d-9cba-7eed0eb8c3e0",
+        "text": "Homme noir"
+      },
+      {
+        "image": "https://firebasestorage.googleapis.com/v0/b/calista-75491.firebasestorage.app/o/prompts%2F1790256755993-Couple%204.png?alt=media&token=e3bd0d74-1514-4360-a7d9-a737bdb0bb46",
+        "text": "COUPLE"
+      },
+      {
+        "image": "https://firebasestorage.googleapis.com/v0/b/calista-75491.firebasestorage.app/o/prompts%2F1790584556552-1000434943.png?alt=media&token=36178a34-8ecd-4e98-95f4-f5a62066eca1",
+        "text": "Jeune femme africaine"
+      },
+      {
+        "image": "https://firebasestorage.googleapis.com/v0/b/calista-75491.firebasestorage.app/o/prompts%2F1789656822183-Vintage%201.png?alt=media&token=c305991e-0ff2-45fe-98a2-515b9d0de589",
+        "text": "Vintage"
+      }
+    ],
+    "source_ids": [
+      "jVDMgyGZxqdIv6mMkuhc",
+      "bLA53MN8Igpvvp06t9X8",
+      "L0Mxy2XY6eFS0sxKfur2",
+      "NPa8bidPgqa3ymDS5BKB",
+      "4WGX9xwFWG3Aj1VniERw"
+    ]
   }
 ]
