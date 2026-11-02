@@ -168,12 +168,14 @@
     "id": "auto-20261102-1200",
     "type": "image",
     "scheduled_at": "2026-11-02T12:00:00Z",
-    "status": "pending",
+    "status": "published",
     "caption": "Le bon prompt change tout. 📸\n\n« Jeune femme africaine » : généré par IA, avec le soin des détails qu'on attend d'un vrai shooting.\n\n👉 Le prompt est sur Calista, la galerie de prompts IA en contexte afro. Lien dans la bio.\n\n#CalistaApp #PromptIA #IAAfricaine #CreativeIA #AbidjanCreatives #CoteDIvoire #ContenuIA #EntrepreneurIvoirien",
     "images": [
       "images/auto/mo2pQSvOaWc8jana3x84.jpg"
     ],
-    "source_id": "mo2pQSvOaWc8jana3x84"
+    "source_id": "mo2pQSvOaWc8jana3x84",
+    "ig_media_id": "18031991702855045",
+    "published_at": "2026-11-02T12:01:00+00:00"
   },
   {
     "id": "auto-20261104-1900",
