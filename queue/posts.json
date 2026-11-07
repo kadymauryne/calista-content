@@ -215,7 +215,7 @@
     "id": "reel-20261107-1800",
     "type": "reel",
     "scheduled_at": "2026-11-07T18:00:00Z",
-    "status": "pending",
+    "status": "published",
     "caption": "5 portraits, 1 seul outil : le bon prompt. 📸\n\nTout est généré par IA, avec un contexte afro. Copie le prompt et fais ta version.\n\n👉 Le prompt est sur Calista, la galerie de prompts IA en contexte afro. Lien dans la bio.\n\n#CalistaApp #PromptIA #IAAfricaine #CreativeIA #AbidjanCreatives #CoteDIvoire #ContenuIA #EntrepreneurIvoirien",
     "hook": "Ces portraits ? Juste un prompt IA.",
     "cta": "Copie le prompt et crée le tien",
@@ -247,6 +247,9 @@
       "L0Mxy2XY6eFS0sxKfur2",
       "NPa8bidPgqa3ymDS5BKB",
       "4WGX9xwFWG3Aj1VniERw"
-    ]
+    ],
+    "video_url": "https://cdn.jsdelivr.net/gh/kadymauryne/calista-content@0c9ada673879be5e520d97e9897c79c9c755cd1f/videos/reel-20261107-1800.mp4",
+    "ig_media_id": "18028172114874392",
+    "published_at": "2026-11-07T18:02:10+00:00"
   }
 ]
