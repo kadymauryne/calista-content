@@ -251,5 +251,84 @@
     "video_url": "https://cdn.jsdelivr.net/gh/kadymauryne/calista-content@0c9ada673879be5e520d97e9897c79c9c755cd1f/videos/reel-20261107-1800.mp4",
     "ig_media_id": "18028172114874392",
     "published_at": "2026-11-07T18:02:10+00:00"
+  },
+  {
+    "id": "auto-20261109-1200",
+    "type": "image",
+    "scheduled_at": "2026-11-09T12:00:00Z",
+    "status": "pending",
+    "caption": "Pas de studio photo, pas de budget pub énorme. 🎯\n\n« Pub marque de thé » a été généré par IA. Le même rendu est possible pour ton produit avec le bon prompt.\n\n👉 Le prompt est sur Calista, la galerie de prompts IA en contexte afro. Lien dans la bio.\n(Prompt premium)\n\n#CalistaApp #PromptIA #IAAfricaine #CreativeIA #AbidjanCreatives #CoteDIvoire #ContenuIA #EntrepreneurIvoirien",
+    "images": [
+      "images/auto/TdbLGZPHjq26UxewBjOe.jpg"
+    ],
+    "source_id": "TdbLGZPHjq26UxewBjOe"
+  },
+  {
+    "id": "auto-20261111-1900",
+    "type": "carousel",
+    "scheduled_at": "2026-11-11T19:00:00Z",
+    "status": "pending",
+    "caption": "Zéro shooting, zéro studio. Juste 4 prompts. ✨\n\nSwipe ➡️ et dis-nous en commentaire ton préféré.\n\n1. Marque de thé Mau tea\n2. Marque d'ébénisterie\n3. IMAGE SAC\n4. Pub chocolat PARACAO\n\n👉 Le prompt est sur Calista, la galerie de prompts IA en contexte afro. Lien dans la bio.\n\n#CalistaApp #PromptIA #IAAfricaine #CreativeIA #AbidjanCreatives #CoteDIvoire #ContenuIA #EntrepreneurIvoirien",
+    "images": [
+      "images/auto/r2GWkAMey1znQ0E6Uby1.jpg",
+      "images/auto/PhA2x2P5pbXr2EQEILXS.jpg",
+      "images/auto/mwhj9JPMJhiRiIhODQVi.jpg",
+      "images/auto/MxQffV2dzErMfgFzaSbh.jpg"
+    ],
+    "source_ids": [
+      "r2GWkAMey1znQ0E6Uby1",
+      "PhA2x2P5pbXr2EQEILXS",
+      "mwhj9JPMJhiRiIhODQVi",
+      "MxQffV2dzErMfgFzaSbh"
+    ]
+  },
+  {
+    "id": "auto-20261113-1200",
+    "type": "image",
+    "scheduled_at": "2026-11-13T12:00:00Z",
+    "status": "pending",
+    "caption": "Le bon prompt change tout. 📸\n\n« Dame » : généré par IA, avec le soin des détails qu'on attend d'un vrai shooting.\n\n👉 Le prompt est sur Calista, la galerie de prompts IA en contexte afro. Lien dans la bio.\n\n#CalistaApp #PromptIA #IAAfricaine #CreativeIA #AbidjanCreatives #CoteDIvoire #ContenuIA #EntrepreneurIvoirien",
+    "images": [
+      "images/auto/bCaZyINFLP2XUOqdy6z9.jpg"
+    ],
+    "source_id": "bCaZyINFLP2XUOqdy6z9"
+  },
+  {
+    "id": "reel-20261114-1800",
+    "type": "reel",
+    "scheduled_at": "2026-11-14T18:00:00Z",
+    "status": "pending",
+    "caption": "5 affiches, 5 ambiances. 🎬\n\nTout est généré par IA. Inspire-toi, copie le prompt, adapte-le à ton événement.\n\n👉 Le prompt est sur Calista, la galerie de prompts IA en contexte afro. Lien dans la bio.\n\n#CalistaApp #PromptIA #IAAfricaine #CreativeIA #AbidjanCreatives #CoteDIvoire #ContenuIA #EntrepreneurIvoirien",
+    "hook": "Ces affiches ? Faites avec un simple prompt.",
+    "cta": "Copie le prompt et crée le tien",
+    "slides": [
+      {
+        "image": "https://firebasestorage.googleapis.com/v0/b/calista-75491.firebasestorage.app/o/prompts%2F1793048923989-Carrousel%20%C3%A9clat%20naturel%20%C3%A0%20la%20past%C3%A8que.png?alt=media&token=5c9a6212-9016-4b36-9bcb-bc5212d55a00",
+        "text": "AFFICHE PRODUIT DE PEAU"
+      },
+      {
+        "image": "https://firebasestorage.googleapis.com/v0/b/calista-75491.firebasestorage.app/o/prompts%2F1789664743634-AFFICHE%20LIVRE.png?alt=media&token=b584e8ca-5bd3-4690-a95d-ff8418e97582",
+        "text": "Affiche livre"
+      },
+      {
+        "image": "https://firebasestorage.googleapis.com/v0/b/calista-75491.firebasestorage.app/o/prompts%2F1789661006720-Voyage%201.png?alt=media&token=f378c781-0db6-482d-84aa-d842aeea3b72",
+        "text": "Voyage"
+      },
+      {
+        "image": "https://firebasestorage.googleapis.com/v0/b/calista-75491.firebasestorage.app/o/prompts%2F1789823113772-AFFICHE%20PAIN%20BRO.png?alt=media&token=c2a35b2e-8e03-4877-9dfb-2221ab74fbf5",
+        "text": "Affiche pain brochette"
+      },
+      {
+        "image": "https://firebasestorage.googleapis.com/v0/b/calista-75491.firebasestorage.app/o/prompts%2F1789820424034-beignets.png?alt=media&token=7f55b2e3-92f9-4b50-8378-dd33284cb061",
+        "text": "Beignets"
+      }
+    ],
+    "source_ids": [
+      "vCccOgz6MRDQwKoce97m",
+      "OGrRr184viJrxc06F1iB",
+      "Zky6EkEVRm4rtjX2NVwk",
+      "XckjVxnbJPNl30Qmd9wn",
+      "s4zQ4pICNtgmj7gkJZnc"
+    ]
   }
 ]
