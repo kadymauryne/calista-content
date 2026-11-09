@@ -256,12 +256,14 @@
     "id": "auto-20261109-1200",
     "type": "image",
     "scheduled_at": "2026-11-09T12:00:00Z",
-    "status": "pending",
+    "status": "published",
     "caption": "Pas de studio photo, pas de budget pub énorme. 🎯\n\n« Pub marque de thé » a été généré par IA. Le même rendu est possible pour ton produit avec le bon prompt.\n\n👉 Le prompt est sur Calista, la galerie de prompts IA en contexte afro. Lien dans la bio.\n(Prompt premium)\n\n#CalistaApp #PromptIA #IAAfricaine #CreativeIA #AbidjanCreatives #CoteDIvoire #ContenuIA #EntrepreneurIvoirien",
     "images": [
       "images/auto/TdbLGZPHjq26UxewBjOe.jpg"
     ],
-    "source_id": "TdbLGZPHjq26UxewBjOe"
+    "source_id": "TdbLGZPHjq26UxewBjOe",
+    "ig_media_id": "18118372724110313",
+    "published_at": "2026-11-09T12:00:51+00:00"
   },
   {
     "id": "auto-20261111-1900",
