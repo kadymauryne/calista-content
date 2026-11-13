@@ -290,12 +290,14 @@
     "id": "auto-20261113-1200",
     "type": "image",
     "scheduled_at": "2026-11-13T12:00:00Z",
-    "status": "pending",
+    "status": "published",
     "caption": "Le bon prompt change tout. 📸\n\n« Dame » : généré par IA, avec le soin des détails qu'on attend d'un vrai shooting.\n\n👉 Le prompt est sur Calista, la galerie de prompts IA en contexte afro. Lien dans la bio.\n\n#CalistaApp #PromptIA #IAAfricaine #CreativeIA #AbidjanCreatives #CoteDIvoire #ContenuIA #EntrepreneurIvoirien",
     "images": [
       "images/auto/bCaZyINFLP2XUOqdy6z9.jpg"
     ],
-    "source_id": "bCaZyINFLP2XUOqdy6z9"
+    "source_id": "bCaZyINFLP2XUOqdy6z9",
+    "ig_media_id": "18107446376377231",
+    "published_at": "2026-11-13T12:03:06+00:00"
   },
   {
     "id": "reel-20261114-1800",
