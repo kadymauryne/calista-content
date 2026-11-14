@@ -303,7 +303,7 @@
     "id": "reel-20261114-1800",
     "type": "reel",
     "scheduled_at": "2026-11-14T18:00:00Z",
-    "status": "pending",
+    "status": "published",
     "caption": "5 affiches, 5 ambiances. 🎬\n\nTout est généré par IA. Inspire-toi, copie le prompt, adapte-le à ton événement.\n\n👉 Le prompt est sur Calista, la galerie de prompts IA en contexte afro. Lien dans la bio.\n\n#CalistaApp #PromptIA #IAAfricaine #CreativeIA #AbidjanCreatives #CoteDIvoire #ContenuIA #EntrepreneurIvoirien",
     "hook": "Ces affiches ? Faites avec un simple prompt.",
     "cta": "Copie le prompt et crée le tien",
@@ -335,6 +335,9 @@
       "Zky6EkEVRm4rtjX2NVwk",
       "XckjVxnbJPNl30Qmd9wn",
       "s4zQ4pICNtgmj7gkJZnc"
-    ]
+    ],
+    "video_url": "https://cdn.jsdelivr.net/gh/kadymauryne/calista-content@8d123106eefb9a0b394ee31bee0172838dfaadba/videos/reel-20261114-1800.mp4",
+    "ig_media_id": "18167772577490216",
+    "published_at": "2026-11-14T18:01:36+00:00"
   }
 ]
