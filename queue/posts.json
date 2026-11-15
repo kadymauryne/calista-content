@@ -339,5 +339,84 @@
     "video_url": "https://cdn.jsdelivr.net/gh/kadymauryne/calista-content@8d123106eefb9a0b394ee31bee0172838dfaadba/videos/reel-20261114-1800.mp4",
     "ig_media_id": "18167772577490216",
     "published_at": "2026-11-14T18:01:36+00:00"
+  },
+  {
+    "id": "auto-20261116-1200",
+    "type": "image",
+    "scheduled_at": "2026-11-16T12:00:00Z",
+    "status": "pending",
+    "caption": "Pas de studio photo, pas de budget pub énorme. 🎯\n\n« Pub crème KARIOR » a été généré par IA. Le même rendu est possible pour ton produit avec le bon prompt.\n\n👉 Le prompt est sur Calista, la galerie de prompts IA en contexte afro. Lien dans la bio.\n(Prompt premium)\n\n#CalistaApp #PromptIA #IAAfricaine #CreativeIA #AbidjanCreatives #CoteDIvoire #ContenuIA #EntrepreneurIvoirien",
+    "images": [
+      "images/auto/PnPrArXPFuxC4GBCV6bA.jpg"
+    ],
+    "source_id": "PnPrArXPFuxC4GBCV6bA"
+  },
+  {
+    "id": "auto-20261118-1900",
+    "type": "carousel",
+    "scheduled_at": "2026-11-18T19:00:00Z",
+    "status": "pending",
+    "caption": "Ton préféré : 1, 2, 3 ou 4 ? 👇\n\n4 portraits à reproduire avec un simple prompt.\n\n1. Jeune femme africaine\n2. Homme noir\n3. Baddie\n4. HM\n\n👉 Le prompt est sur Calista, la galerie de prompts IA en contexte afro. Lien dans la bio.\n\n#CalistaApp #PromptIA #IAAfricaine #CreativeIA #AbidjanCreatives #CoteDIvoire #ContenuIA #EntrepreneurIvoirien",
+    "images": [
+      "images/auto/9UzSWvgPQWwpj5TSQYym.jpg",
+      "images/auto/aIdrklW2MIZ90Jl6HKnA.jpg",
+      "images/auto/ulTjUSOgoy2EplMxkbHX.jpg",
+      "images/auto/BFOVFDFnbHScBm4u2whE.jpg"
+    ],
+    "source_ids": [
+      "9UzSWvgPQWwpj5TSQYym",
+      "aIdrklW2MIZ90Jl6HKnA",
+      "ulTjUSOgoy2EplMxkbHX",
+      "BFOVFDFnbHScBm4u2whE"
+    ]
+  },
+  {
+    "id": "auto-20261120-1200",
+    "type": "image",
+    "scheduled_at": "2026-11-20T12:00:00Z",
+    "status": "pending",
+    "caption": "Un visuel fort en quelques minutes. ⚡\n\n« AFFICHE VILLE » : créé par IA avec un prompt que tu peux copier et adapter.\n\n👉 Le prompt est sur Calista, la galerie de prompts IA en contexte afro. Lien dans la bio.\n\n#CalistaApp #PromptIA #IAAfricaine #CreativeIA #AbidjanCreatives #CoteDIvoire #ContenuIA #EntrepreneurIvoirien",
+    "images": [
+      "images/auto/onHhVFXKhfLIhBTkdFKw.jpg"
+    ],
+    "source_id": "onHhVFXKhfLIhBTkdFKw"
+  },
+  {
+    "id": "reel-20261121-1800",
+    "type": "reel",
+    "scheduled_at": "2026-11-21T18:00:00Z",
+    "status": "pending",
+    "caption": "5 pubs produit, 0 studio photo. 🎯\n\nTout est généré par IA avec un prompt. Tu veux le même rendu pour ton produit ? Les prompts sont prêts à copier.\n\n👉 Le prompt est sur Calista, la galerie de prompts IA en contexte afro. Lien dans la bio.\n\n#CalistaApp #PromptIA #IAAfricaine #CreativeIA #AbidjanCreatives #CoteDIvoire #ContenuIA #EntrepreneurIvoirien",
+    "hook": "Ces pubs ? Zéro shooting. Juste un prompt.",
+    "cta": "Copie le prompt et crée le tien",
+    "slides": [
+      {
+        "image": "https://firebasestorage.googleapis.com/v0/b/calista-75491.firebasestorage.app/o/prompts%2F1789718979241-1000420097.png?alt=media&token=9a0cde35-9e93-442f-a139-6b3d0a737285",
+        "text": "Pub sérum visage"
+      },
+      {
+        "image": "https://firebasestorage.googleapis.com/v0/b/calista-75491.firebasestorage.app/o/prompts%2F1789652815015-LAIT%20DE%20CORPS.png?alt=media&token=393a36d7-eaec-4de2-ba60-6128fa32adf6",
+        "text": "Lait de corps"
+      },
+      {
+        "image": "https://firebasestorage.googleapis.com/v0/b/calista-75491.firebasestorage.app/o/prompts%2F1789720175666-1000420138.png?alt=media&token=8ab4b1cd-6e1a-4688-93e6-5cfe50559aef",
+        "text": "Pub jus"
+      },
+      {
+        "image": "https://firebasestorage.googleapis.com/v0/b/calista-75491.firebasestorage.app/o/prompts%2F1790334507913-1000431117.png?alt=media&token=91289cee-c06d-45cd-a01a-18659334e371",
+        "text": "Pub glace"
+      },
+      {
+        "image": "https://firebasestorage.googleapis.com/v0/b/calista-75491.firebasestorage.app/o/prompts%2F1789714073831-1000297523.png?alt=media&token=18cbe101-2aa8-4808-b16f-249ac59122df",
+        "text": "Pub Marque de thé"
+      }
+    ],
+    "source_ids": [
+      "y9bsEJEdCsBEUqkt1Aj9",
+      "KVvyaXF8HKT5VQcODmCe",
+      "MQGpdMv7IZcbL1frMXVB",
+      "4seJyceosF6iY3C9YBxF",
+      "PUj9f2Itni9Om7xoJjMf"
+    ]
   }
 ]
