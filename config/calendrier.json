@@ -1,0 +1,388 @@
+{
+  "_aide": "Calendrier éditorial Décembre 2026 - Janvier 2027. Le planificateur du dimanche remplit la file avec ces entrées (dates dans cette période) à la place des créneaux de schedule.json. Heures = heure d'Abidjan (UTC). kind: reel | carousel | image. n = nombre d'images. mix = catégorie de chaque image ; category = une seule catégorie ; keywords = ne prend que des visuels dont le titre contient un de ces mots (sinon l'entrée reste en brouillon) ; reuse_recent = reprend des visuels publiés récemment (best of) ; draft = texte, publication bloquée tant que le statut n'est pas 'pending' dans queue/posts.json ; numbered = chiffres 1, 2, 3 à la place des titres dans le réel.",
+  "hashtag_sets": {
+    "A": "#CalistaApp #PromptIA #CreationIA #IAAfrique #IntelligenceArtificielle",
+    "B": "#CalistaApp #ArtIA #CreativiteAfricaine #DesignAfricain #CreateurDeContenu",
+    "C": "#CalistaApp #EntrepreneuriatAfricain #MarketingDigital #IAAfrique #PromptIA"
+  },
+  "recent_days": 45,
+  "entries": [
+    {
+      "date": "2026-12-01",
+      "time": "18:30",
+      "kind": "reel",
+      "n": 4,
+      "rubrique": "L'effet waouh",
+      "tags": "A",
+      "hook": "Et si l'IA nous ressemblait enfin ?",
+      "cta": "Découvre Calista : lien en bio",
+      "caption": "Et si l'IA nous ressemblait enfin ? ✨\n\nDes visages, des styles et des univers pensés avec notre sensibilité, tous créés par IA.\n\n👉 Découvre la galerie Calista : lien en bio."
+    },
+    {
+      "date": "2026-12-02",
+      "time": "12:30",
+      "kind": "carousel",
+      "n": 5,
+      "rubrique": "Éducation / inspiration",
+      "tags": "B",
+      "caption": "5 choses que tu peux créer avec l'IA. 👇\n\n1. Un portrait professionnel\n2. Une affiche publicitaire\n3. Un visuel de produit\n4. Une identité de marque\n5. Un visuel d'événement\n\nSwipe ➡️ Enregistre ce post et partage-le à un créatif.",
+      "mix": [
+        "portraits",
+        "affiches-visuels",
+        "pub-produit",
+        "marque-logo",
+        "affiches-visuels"
+      ]
+    },
+    {
+      "date": "2026-12-04",
+      "time": "19:00",
+      "kind": "reel",
+      "n": 4,
+      "rubrique": "Application pro",
+      "tags": "C",
+      "hook": "Une idée peut devenir une campagne.",
+      "cta": "Retrouve l'inspiration sur Calista",
+      "caption": "Une idée peut devenir une campagne. 🎯\n\nUn produit, une intention, un prompt : des visuels publicitaires créés par IA, sans shooting.\n\n👉 Retrouve l'inspiration sur Calista : lien en bio.",
+      "category": "pub-produit"
+    },
+    {
+      "date": "2026-12-07",
+      "time": "12:30",
+      "kind": "reel",
+      "n": 4,
+      "rubrique": "Apprendre l'IA",
+      "tags": "A",
+      "hook": "Pas besoin d'un studio pour un portrait soigné.",
+      "cta": "Découvre les prompts sur Calista",
+      "caption": "Pas besoin d'un studio pour préparer un portrait soigné. 📸\n\nPour un bon portrait IA, précise toujours : le sujet, le décor, la lumière, le cadrage et le style.\n\n👉 Découvre les prompts sur Calista : lien en bio.",
+      "category": "portraits"
+    },
+    {
+      "date": "2026-12-09",
+      "time": "12:30",
+      "kind": "carousel",
+      "n": 5,
+      "rubrique": "Conseils pratiques",
+      "tags": "A",
+      "caption": "7 erreurs qui limitent tes images IA. ⚠️\n\n1. Un prompt trop vague\n2. Pas assez de détails\n3. La lumière non précisée\n4. Le cadrage absent\n5. Un décor flou\n6. Un style incohérent\n7. Un résultat attendu mal défini\n\nSauvegarde ce guide pour ton prochain prompt. 🔖",
+      "mix": [
+        "portraits",
+        "pub-produit",
+        "affiches-visuels",
+        "portraits",
+        "marque-logo"
+      ]
+    },
+    {
+      "date": "2026-12-11",
+      "time": "19:00",
+      "kind": "reel",
+      "n": 4,
+      "rubrique": "IA pour entrepreneurs",
+      "tags": "C",
+      "hook": "Et si ta prochaine publicité commençait avec l'IA ?",
+      "cta": "Visite Calista : lien en bio",
+      "caption": "Et si ta prochaine publicité commençait avec l'IA ? 🚀\n\nUne idée, un prompt, un visuel : les déclinaisons se préparent plus vite qu'on ne le pense.\n\n👉 Visite Calista : lien en bio.",
+      "category": "pub-produit"
+    },
+    {
+      "date": "2026-12-14",
+      "time": "12:30",
+      "kind": "reel",
+      "n": 3,
+      "rubrique": "Défi Calista",
+      "tags": "B",
+      "hook": "Quelle image préfères-tu : 1, 2 ou 3 ?",
+      "cta": "Réponds en commentaire",
+      "caption": "Quelle création préfères-tu : 1, 2 ou 3 ? 👀\n\nToutes les trois sont créées par IA. Réponds en commentaire avec ton numéro !",
+      "numbered": true
+    },
+    {
+      "date": "2026-12-16",
+      "time": "12:30",
+      "kind": "carousel",
+      "n": 5,
+      "rubrique": "Applications africaines",
+      "tags": "C",
+      "caption": "10 idées IA pour les entrepreneurs africains. 💡\n\nRestauration, beauté, mode, cosmétique, artisanat, événementiel, immobilier, tourisme, formation, décoration : chaque secteur peut créer ses visuels avec l'IA.\n\nEn images, 5 exemples ➡️\n\nIdentifie un entrepreneur qui doit voir ça. 👇",
+      "mix": [
+        "pub-produit",
+        "marque-logo",
+        "affiches-visuels",
+        "portraits",
+        "pub-produit"
+      ]
+    },
+    {
+      "date": "2026-12-18",
+      "time": "19:00",
+      "kind": "reel",
+      "n": 4,
+      "rubrique": "Saison / fêtes",
+      "tags": "B",
+      "hook": "Une campagne de Noël imaginée avec l'IA.",
+      "cta": "Trouve ton inspiration sur Calista",
+      "caption": "Une campagne de Noël imaginée avec l'IA. 🎄\n\nAmbiance, couleurs, mise en scène : le visuel de fête commence par un bon prompt.\n\n👉 Trouve ton inspiration sur Calista : lien en bio.",
+      "keywords": [
+        "noël",
+        "noel",
+        "fête",
+        "fete",
+        "christmas",
+        "cadeau",
+        "voeux",
+        "vœux"
+      ]
+    },
+    {
+      "date": "2026-12-21",
+      "time": "12:30",
+      "kind": "carousel",
+      "n": 5,
+      "rubrique": "Inspiration saisonnière",
+      "tags": "B",
+      "caption": "5 visuels de Noël à créer avec l'IA. 🎁\n\nPortrait festif, publicité cadeau, photo produit, carte de vœux, décor de boutique : de quoi préparer les fêtes.\n\nSwipe ➡️ et consulte la galerie Calista : lien en bio.",
+      "keywords": [
+        "noël",
+        "noel",
+        "fête",
+        "fete",
+        "christmas",
+        "cadeau",
+        "voeux",
+        "vœux"
+      ]
+    },
+    {
+      "date": "2026-12-23",
+      "time": "12:30",
+      "kind": "reel",
+      "n": 5,
+      "rubrique": "Découverte du site",
+      "tags": "A",
+      "hook": "Tu ne connais pas encore Calista ?",
+      "cta": "Découvre la galerie : lien en bio",
+      "caption": "Tu ne connais pas encore Calista ? 👀\n\nC'est une galerie de prompts IA en contexte afro : portraits, pubs produit, identités de marque, affiches. Tu choisis un visuel, tu copies le prompt, tu crées le tien.\n\n👉 Lien en bio.",
+      "mix": [
+        "portraits",
+        "pub-produit",
+        "affiches-visuels",
+        "marque-logo",
+        "portraits"
+      ]
+    },
+    {
+      "date": "2026-12-25",
+      "time": "19:00",
+      "kind": "image",
+      "n": 1,
+      "rubrique": "Communauté / marque",
+      "tags": "B",
+      "caption": "La créativité n'a pas de frontières. Joyeux Noël ! 🎄✨\n\nMerci d'être là, de nous suivre et de créer avec nous.\n\nPartage ce message à un créatif de ton entourage. 💛"
+    },
+    {
+      "date": "2026-12-28",
+      "time": "12:30",
+      "kind": "reel",
+      "n": 5,
+      "rubrique": "Récapitulatif",
+      "tags": "B",
+      "hook": "Les créations qui ont marqué décembre.",
+      "cta": "Abonne-toi pour la suite",
+      "caption": "Les créations qui ont marqué décembre. ✨\n\nTu en as préféré une ? Dis-le-nous en commentaire.\n\nAbonne-toi pour ne rien rater de ce qu'on prépare en janvier.",
+      "reuse_recent": true
+    },
+    {
+      "date": "2026-12-30",
+      "time": "12:30",
+      "kind": "carousel",
+      "n": 5,
+      "rubrique": "Projection / conseils",
+      "tags": "C",
+      "caption": "7 façons d'utiliser l'IA pour booster ta créativité en 2027. 🚀\n\n1. Ton identité visuelle\n2. Tes contenus pour les réseaux sociaux\n3. Tes publicités\n4. Tes portraits\n5. Ton storytelling\n6. Tes moodboards\n7. Tes supports de présentation\n\nEnregistre ce guide. 🔖",
+      "mix": [
+        "marque-logo",
+        "affiches-visuels",
+        "pub-produit",
+        "portraits",
+        "affiches-visuels"
+      ]
+    },
+    {
+      "date": "2026-12-31",
+      "time": "18:30",
+      "kind": "image",
+      "n": 1,
+      "rubrique": "Vision de marque",
+      "tags": "A",
+      "caption": "En 2027, créons autrement. ✨\n\nMerci à celles et ceux qui nous suivent, partagent et créent avec nous. En 2027, nous partagerons encore plus d'idées et de ressources créatives.\n\n👉 Rejoins la communauté Calista."
+    },
+    {
+      "date": "2027-01-04",
+      "time": "12:30",
+      "kind": "reel",
+      "n": 3,
+      "rubrique": "Rentrée créative",
+      "tags": "C",
+      "hook": "Commence 2027 avec une longueur d'avance créative.",
+      "cta": "Découvre Calista : lien en bio",
+      "caption": "Commence 2027 avec une longueur d'avance créative. 🚀\n\n3 contenus à préparer pour bien démarrer l'année : un portrait, un visuel produit et une publication promotionnelle.\n\n👉 Découvre Calista : lien en bio.",
+      "mix": [
+        "portraits",
+        "pub-produit",
+        "affiches-visuels"
+      ]
+    },
+    {
+      "date": "2027-01-06",
+      "time": "12:30",
+      "kind": "carousel",
+      "n": 4,
+      "rubrique": "Tutoriel prompts",
+      "tags": "A",
+      "caption": "La formule simple pour mieux rédiger tes prompts. 🧠\n\nSujet + action + environnement + lumière + cadrage + style + niveau de détail.\n\nUn exemple : « une femme souriante (sujet) qui tient un sac (action), dans un salon moderne (environnement), lumière douce de fenêtre (lumière), plan taille (cadrage), style photo magazine (style), détails réalistes (niveau de détail) ».\n\nSauvegarde ce modèle. 🔖",
+      "mix": [
+        "portraits",
+        "pub-produit",
+        "affiches-visuels",
+        "marque-logo"
+      ]
+    },
+    {
+      "date": "2027-01-08",
+      "time": "19:00",
+      "kind": "reel",
+      "n": 4,
+      "rubrique": "Avant / après",
+      "tags": "A",
+      "hook": "Ce que quelques bonnes instructions peuvent changer.",
+      "cta": "Explore Calista : lien en bio",
+      "caption": "Regarde ce que quelques bonnes instructions peuvent changer. 👀\n\nUn prompt précis, et le résultat n'a plus rien à voir.\n\n👉 Explore Calista : lien en bio."
+    },
+    {
+      "date": "2027-01-11",
+      "time": "12:30",
+      "kind": "reel",
+      "n": 4,
+      "rubrique": "IA pour les marques",
+      "tags": "C",
+      "hook": "Une seule idée, plusieurs formats de communication.",
+      "cta": "Visite le site : lien en bio",
+      "caption": "Une seule idée, plusieurs formats de communication. 🎯\n\nVisuel principal, Story, bannière : une même intention peut se décliner partout.\n\n👉 Visite le site : lien en bio.",
+      "mix": [
+        "marque-logo",
+        "pub-produit",
+        "affiches-visuels",
+        "pub-produit"
+      ]
+    },
+    {
+      "date": "2027-01-13",
+      "time": "12:30",
+      "kind": "carousel",
+      "n": 5,
+      "rubrique": "Erreurs / pédagogie",
+      "tags": "C",
+      "caption": "Pour une belle photo produit IA, pense à ces 5 détails. 📦\n\n1. La matière\n2. La forme\n3. L'angle\n4. La lumière\n5. L'arrière-plan\n\nEnregistre ce post pour ton prochain visuel. 🔖",
+      "category": "pub-produit"
+    },
+    {
+      "date": "2027-01-15",
+      "time": "19:00",
+      "kind": "reel",
+      "n": 4,
+      "rubrique": "Défi communautaire",
+      "tags": "B",
+      "hook": "Le défi créatif Calista est lancé !",
+      "cta": "Participe et partage",
+      "caption": "Le défi créatif Calista est lancé ! 🔥\n\n[THÈME DU DÉFI À DÉFINIR] — [MODE DE PARTICIPATION À DÉFINIR]\n\nParticipe et partage !",
+      "draft": "Défi communautaire : thème, mode de participation (hashtag, mention, DM) et éventuelle récompense à définir avant publication."
+    },
+    {
+      "date": "2027-01-18",
+      "time": "12:30",
+      "kind": "reel",
+      "n": 4,
+      "rubrique": "Portraits / identité",
+      "tags": "A",
+      "hook": "Un portrait réussi commence par une description précise.",
+      "cta": "Trouve des idées sur Calista",
+      "caption": "Un portrait réussi commence par une description précise. 📸\n\nDécris la tenue, la coiffure, la pose et la lumière. Et si tu t'inspires d'une référence, respecte-la.\n\n👉 Trouve des idées sur Calista : lien en bio.",
+      "category": "portraits"
+    },
+    {
+      "date": "2027-01-20",
+      "time": "12:30",
+      "kind": "carousel",
+      "n": 5,
+      "rubrique": "Cas d'usage",
+      "tags": "C",
+      "caption": "Community managers : voici 6 usages de l'IA à tester. 📱\n\n1. Des moodboards\n2. Un calendrier visuel\n3. Des illustrations\n4. Des publicités\n5. La déclinaison de formats\n6. De l'inspiration au quotidien\n\nPartage ce post à ton équipe. 🤝",
+      "mix": [
+        "affiches-visuels",
+        "pub-produit",
+        "marque-logo",
+        "affiches-visuels",
+        "pub-produit"
+      ]
+    },
+    {
+      "date": "2027-01-22",
+      "time": "19:00",
+      "kind": "reel",
+      "n": 5,
+      "rubrique": "Démonstration Calista",
+      "tags": "A",
+      "hook": "Trouve plus vite l'inspiration pour ta prochaine création.",
+      "cta": "Clique sur le lien en bio",
+      "caption": "Trouve plus vite l'inspiration pour ta prochaine création. 💡\n\nTu as un besoin ? Parcours la galerie, choisis un visuel, copie le prompt et adapte-le.\n\n👉 Clique sur le lien en bio.",
+      "mix": [
+        "pub-produit",
+        "portraits",
+        "marque-logo",
+        "affiches-visuels",
+        "portraits"
+      ]
+    },
+    {
+      "date": "2027-01-25",
+      "time": "12:30",
+      "kind": "reel",
+      "n": 4,
+      "rubrique": "Mythe / réalité",
+      "tags": "A",
+      "hook": "L'outil ne fait pas tout : le prompt compte aussi.",
+      "cta": "Abonne-toi",
+      "caption": "L'outil ne fait pas tout : le prompt compte aussi. 🧠\n\nUn bon résultat dépend de la précision des instructions, et parfois de quelques retouches.\n\nAbonne-toi pour apprendre à mieux écrire tes prompts.",
+      "category": "portraits"
+    },
+    {
+      "date": "2027-01-27",
+      "time": "12:30",
+      "kind": "carousel",
+      "n": 4,
+      "rubrique": "Ressource pratique",
+      "tags": "A",
+      "caption": "Ta checklist avant de générer une image. ✅\n\n• L'objectif\n• Le sujet\n• Le décor\n• La lumière\n• Le cadrage\n• Le style\n• Ce qu'il faut éviter\n\nSauvegarde-la. 🔖",
+      "mix": [
+        "portraits",
+        "pub-produit",
+        "affiches-visuels",
+        "marque-logo"
+      ]
+    },
+    {
+      "date": "2027-01-29",
+      "time": "19:00",
+      "kind": "reel",
+      "n": 5,
+      "rubrique": "Best of",
+      "tags": "B",
+      "hook": "Quelle création préfères-tu ?",
+      "cta": "Vote en commentaire",
+      "caption": "Quelle création préfères-tu ? 👀\n\nUne sélection de nos créations récentes. Vote en commentaire et découvre le site : lien en bio.",
+      "reuse_recent": true
+    }
+  ]
+}

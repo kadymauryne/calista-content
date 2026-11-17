@@ -151,20 +151,95 @@ def take(pool, cat, n, taken, rng):
     return picks
 
 
+def load_calendar():
+    path = os.path.join(ROOT, "config", "calendrier.json")
+    if not os.path.exists(path):
+        return None
+    return load("config/calendrier.json")
+
+
+def pick_calendar(ent, pool, prompts, history, taken, now, recent_days, last_cats, rng):
+    """Choisit les visuels d'une entrée du calendrier. Renvoie None s'il n'y en a pas assez."""
+    n = ent["n"]
+    if ent.get("reuse_recent"):
+        cutoff = (now - timedelta(days=recent_days)).isoformat()
+        ids = {h["id"] for h in history if h["at"] >= cutoff}
+        cand = [p for p in prompts if p["id"] in ids and p["id"] not in taken]
+    else:
+        cand = [p for p in pool if p["id"] not in taken]
+    kws = [k.lower() for k in ent.get("keywords", [])]
+    if kws:
+        cand = [p for p in cand if any(k in p["title"].lower() for k in kws)]
+    if len(cand) < n:
+        return None
+    if ent.get("mix"):
+        picks = []
+        for cat in ent["mix"]:
+            left = [p for p in cand if p not in picks]
+            opts = [p for p in left if p["category"] == cat] or left
+            if not opts:
+                return None
+            picks.append(rng.choice(opts))
+        return picks
+    cat = ent.get("category") or pick_category(cand, taken, n, last_cats, rng)
+    same = [p for p in cand if p["category"] == cat]
+    if not cat or len(same) < n:
+        return rng.sample(cand, n) if not ent.get("category") else None
+    return rng.sample(same, n)
+
+
+def calendar_entry(ent, picks, cal):
+    """Construit l'élément de queue/posts.json pour une entrée du calendrier."""
+    stamp = f"{ent['date']}T{ent['time']}:00Z"
+    tags = cal["hashtag_sets"].get(ent.get("tags", "A"), "")
+    entry = {"id": f"cal-{ent['date'].replace('-', '')}-{ent['time'].replace(':', '')}",
+             "type": ent["kind"], "scheduled_at": stamp, "status": "pending",
+             "caption": f"{ent['caption']}\n\n{tags}".strip(), "rubrique": ent.get("rubrique", "")}
+    if ent["kind"] == "reel":
+        entry["hook"], entry["cta"] = ent["hook"], ent["cta"]
+        entry["slides"] = [{"image": p["image"],
+                            "text": str(i + 1) if ent.get("numbered") else clean_title(p["title"])}
+                           for i, p in enumerate(picks or [])]
+        entry["source_ids"] = [p["id"] for p in picks or []]
+    elif ent["kind"] == "carousel":
+        entry["source_ids"] = [p["id"] for p in picks or []]
+    else:
+        entry["source_id"] = picks[0]["id"] if picks else None
+    return entry
+
+
 def main():
     cfg, captions, exclude = load("config/schedule.json"), load("config/captions.json"), load("config/exclude.json")
     queue, history = load("queue/posts.json"), load("queue/history.json")
-    now = datetime.now(timezone.utc)
+    now = (datetime.fromisoformat(os.environ["PLAN_NOW"]) if os.environ.get("PLAN_NOW")
+           else datetime.now(timezone.utc))
     queued = {p["scheduled_at"] for p in queue}
 
     # Créneaux à remplir : posts (image ou carrousel) et réels
+    cal = load_calendar()
+    cal_entries = cal["entries"] if cal else []
+    cal_first = min((e["date"] for e in cal_entries), default=None)
+    cal_last = max((e["date"] for e in cal_entries), default=None)
+
+    def in_calendar(d):
+        return bool(cal_entries) and cal_first <= d.strftime("%Y-%m-%d") <= cal_last
+
     todo = []
     for s in cfg["slots"]:
         for d in slots_for(now, WEEKS, [s]):
-            todo.append((d, s.get("type", "image"), s.get("images", 1)))
+            if not in_calendar(d):
+                todo.append((d, s.get("type", "image"), s.get("images", 1), None))
     for d in slots_for(now, WEEKS, cfg.get("reel_slots", [])):
-        todo.append((d, "reel", cfg.get("reel_images", 5)))
-    todo = sorted(t for t in todo if t[0].strftime("%Y-%m-%dT%H:%M:00Z") not in queued)
+        if not in_calendar(d):
+            todo.append((d, "reel", cfg.get("reel_images", 5), None))
+    win_start = (now + timedelta(days=1)).replace(hour=0, minute=0, second=0, microsecond=0)
+    win_end = win_start + timedelta(days=7 * WEEKS)
+    for e in cal_entries:
+        hh, mm = map(int, e["time"].split(":"))
+        d = datetime.strptime(e["date"], "%Y-%m-%d").replace(hour=hh, minute=mm, tzinfo=timezone.utc)
+        if win_start <= d < win_end:
+            todo.append((d, e["kind"], 0 if e.get("draft") else e["n"], e))
+    todo = sorted((t for t in todo if t[0].strftime("%Y-%m-%dT%H:%M:00Z") not in queued), key=lambda t: t[0])
     if not todo:
         print("Rien à planifier : tous les créneaux sont déjà remplis.")
         return 0
@@ -178,7 +253,7 @@ def main():
         if q["status"] in ("pending", "draft"):
             recent |= {q.get("source_id")} | set(q.get("source_ids", []))
     pool = [p for p in prompts if p["id"] not in recent]
-    need = sum(n for _, _, n in todo)
+    need = sum(n for _, _, n, _ in todo)
     print(f"{len(prompts)} prompts utilisables, {len(pool)} pas encore publiés depuis {cfg['cooldown_days']} jours, "
           f"{need} nécessaires.")
     if len(pool) < need:
@@ -192,8 +267,37 @@ def main():
     last_cats = [h["category"] for h in history[-2:]]
     taken = set()
     r = captions["reels"]
-    for when, kind, n in todo:
+    for when, kind, n, ent in todo:
         stamp = when.strftime("%Y-%m-%dT%H:%M:00Z")
+        if ent:
+            picks = None if ent.get("draft") else pick_calendar(ent, pool, prompts, history, taken, now,
+                                                                cal.get("recent_days", 45), last_cats, rng)
+            if ent.get("draft") or not picks:
+                why = ent.get("draft") or "Pas assez de visuels adaptés dans la galerie (voir mots-clés/catégories du calendrier)."
+                print(f"- {stamp}  {kind.upper()} BROUILLON [{ent.get('rubrique', '')}] : {why}")
+                if not DRY:
+                    entry = calendar_entry(ent, None, cal)
+                    entry.update({"status": "draft", "note": why})
+                    queue.append(entry)
+                continue
+            taken |= {p["id"] for p in picks}
+            last_cats = (last_cats + [picks[0]["category"]])[-2:]
+            print(f"- {stamp}  {kind.upper()} [{ent.get('rubrique', '')}] " + " | ".join(p["title"] for p in picks))
+            if DRY:
+                continue
+            entry = calendar_entry(ent, picks, cal)
+            if kind != "reel":
+                rels = []
+                for p in picks:
+                    rel = f"images/auto/{p['id']}.jpg"
+                    to_jpeg(p["image"], os.path.join(ROOT, rel), force_45=(kind == "carousel"))
+                    rels.append(rel)
+                entry["images"] = rels
+            queue.append(entry)
+            for p in picks:
+                history.append({"id": p["id"], "category": p["category"], "reel": kind == "reel",
+                                "at": now.isoformat(timespec="seconds")})
+            continue
         cat = pick_category(pool, taken, n, last_cats, rng)
         if not cat:
             print(f"- {stamp}  {kind} : pas assez d'images neuves, créneau laissé vide.")
