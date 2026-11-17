@@ -297,7 +297,10 @@
       "hook": "Défi Calista : ton portrait baddie.",
       "cta": "Participe : #DefiBaddiesCalista",
       "caption": "Le défi créatif Calista est lancé ! 🔥\n\nLe thème : un portrait baddie.\n\nComment participer :\n1. Choisis un prompt sur Calista (lien en bio)\n2. Génère ton portrait baddie avec l'IA\n3. Publie-le avec le hashtag #DefiBaddiesCalista et identifie Calista\n\nOn repartage les plus belles créations en Story (avec ton accord et ton crédit). Participe et partage ! 👑",
-      "category": "portraits"
+      "category": "portraits",
+      "keywords": [
+        "baddie"
+      ]
     },
     {
       "date": "2027-01-18",
