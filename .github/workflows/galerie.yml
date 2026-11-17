@@ -1,0 +1,12 @@
+name: Lister la galerie
+
+on:
+  workflow_dispatch: {}
+
+jobs:
+  lister:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install pillow
+      - run: python3 scripts/list_gallery.py
