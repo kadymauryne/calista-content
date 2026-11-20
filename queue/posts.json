@@ -378,12 +378,14 @@
     "id": "auto-20261120-1200",
     "type": "image",
     "scheduled_at": "2026-11-20T12:00:00Z",
-    "status": "pending",
+    "status": "published",
     "caption": "Un visuel fort en quelques minutes. ⚡\n\n« AFFICHE VILLE » : créé par IA avec un prompt que tu peux copier et adapter.\n\n👉 Le prompt est sur Calista, la galerie de prompts IA en contexte afro. Lien dans la bio.\n\n#CalistaApp #PromptIA #IAAfricaine #CreativeIA #AbidjanCreatives #CoteDIvoire #ContenuIA #EntrepreneurIvoirien",
     "images": [
       "images/auto/onHhVFXKhfLIhBTkdFKw.jpg"
     ],
-    "source_id": "onHhVFXKhfLIhBTkdFKw"
+    "source_id": "onHhVFXKhfLIhBTkdFKw",
+    "ig_media_id": "18018161078754963",
+    "published_at": "2026-11-20T12:01:10+00:00"
   },
   {
     "id": "reel-20261121-1800",
