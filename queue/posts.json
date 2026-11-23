@@ -427,5 +427,84 @@
     "video_url": "https://cdn.jsdelivr.net/gh/kadymauryne/calista-content@da608deadeb6219299b23f384ab4a331851a468d/videos/reel-20261121-1800.mp4",
     "ig_media_id": "17944509327381423",
     "published_at": "2026-11-21T18:02:25+00:00"
+  },
+  {
+    "id": "auto-20261125-1900",
+    "type": "carousel",
+    "scheduled_at": "2026-11-25T19:00:00Z",
+    "status": "pending",
+    "caption": "IA + contexte afro = ces 4 portraits. 👀\n\nSwipe pour tout voir ➡️ Ton préféré, c'est lequel ?\n\n1. Jeune femme africaine\n2. Jeune fille africaine\n3. Jeune femme africaine\n4. Baddie\n\n👉 Le prompt est sur Calista, la galerie de prompts IA en contexte afro. Lien dans la bio.\n\n#CalistaApp #PromptIA #IAAfricaine #CreativeIA #AbidjanCreatives #CoteDIvoire #ContenuIA #EntrepreneurIvoirien",
+    "images": [
+      "images/auto/BtKqxcvVkpvnElAP43uL.jpg",
+      "images/auto/AlVI9dFGMx27tREmoEbc.jpg",
+      "images/auto/uwCLNSaCh67ixKSK4dWY.jpg",
+      "images/auto/GrUw1SWph4kAJAKhblZ1.jpg"
+    ],
+    "source_ids": [
+      "BtKqxcvVkpvnElAP43uL",
+      "AlVI9dFGMx27tREmoEbc",
+      "uwCLNSaCh67ixKSK4dWY",
+      "GrUw1SWph4kAJAKhblZ1"
+    ]
+  },
+  {
+    "id": "auto-20261127-1200",
+    "type": "image",
+    "scheduled_at": "2026-11-27T12:00:00Z",
+    "status": "pending",
+    "caption": "Une affiche qui arrête le pouce. 🎬\n\n« Affiche burger » : un visuel prêt à inspirer ton prochain événement ou ta prochaine promo.\n\n👉 Le prompt est sur Calista, la galerie de prompts IA en contexte afro. Lien dans la bio.\n(Prompt premium)\n\n#CalistaApp #PromptIA #IAAfricaine #CreativeIA #AbidjanCreatives #CoteDIvoire #ContenuIA #EntrepreneurIvoirien",
+    "images": [
+      "images/auto/mPJo4ufLblHdqjfsnmwX.jpg"
+    ],
+    "source_id": "mPJo4ufLblHdqjfsnmwX"
+  },
+  {
+    "id": "reel-20261128-1800",
+    "type": "reel",
+    "scheduled_at": "2026-11-28T18:00:00Z",
+    "status": "pending",
+    "caption": "5 pubs produit, 0 studio photo. 🎯\n\nTout est généré par IA avec un prompt. Tu veux le même rendu pour ton produit ? Les prompts sont prêts à copier.\n\n👉 Le prompt est sur Calista, la galerie de prompts IA en contexte afro. Lien dans la bio.\n\n#CalistaApp #PromptIA #IAAfricaine #CreativeIA #AbidjanCreatives #CoteDIvoire #ContenuIA #EntrepreneurIvoirien",
+    "hook": "Ces pubs ? Zéro shooting. Juste un prompt.",
+    "cta": "Copie le prompt et crée le tien",
+    "slides": [
+      {
+        "image": "https://firebasestorage.googleapis.com/v0/b/calista-75491.firebasestorage.app/o/prompts%2F1794607370301-1000502682.png?alt=media&token=2daf480c-b0cd-427c-93ee-052669e45382",
+        "text": "Pub crème solaire"
+      },
+      {
+        "image": "https://firebasestorage.googleapis.com/v0/b/calista-75491.firebasestorage.app/o/prompts%2F1789752998554-1000420908.png?alt=media&token=2741553c-18a0-4ad1-9118-fffcf829ea0e",
+        "text": "Pub application tech"
+      },
+      {
+        "image": "https://firebasestorage.googleapis.com/v0/b/calista-75491.firebasestorage.app/o/prompts%2F1789653541483-PUB%20PARFUM%20ALIVE.png?alt=media&token=a5c718b0-461e-4cde-bd14-40c3469c5462",
+        "text": "Pub parfum Alive"
+      },
+      {
+        "image": "https://firebasestorage.googleapis.com/v0/b/calista-75491.firebasestorage.app/o/prompts%2F1791476990337-Jus%20solaires%20tropicaux%20en%20%C3%A9clatantes%20splashes.png?alt=media&token=b6923697-9508-45f4-b37b-b6f5ededc91a",
+        "text": "Pub jus naturels"
+      },
+      {
+        "image": "https://firebasestorage.googleapis.com/v0/b/calista-75491.firebasestorage.app/o/prompts%2F1792484767885-%C3%89l%C3%A9gance%20futuriste%20en%20m%C3%A9tal%20liquide.png?alt=media&token=a91fd8f2-2ec5-4ec7-9235-f6baa18998b7",
+        "text": "Pub chaussures"
+      }
+    ],
+    "source_ids": [
+      "4s7gGLtJJLRGg6sW4D09",
+      "s5Yy7JZpHRFu0tdpwvR6",
+      "Pc9h0VMvCcgCLEfdSMAu",
+      "AP40PWOBItzMJVL7EcT5",
+      "9L0kX2VOMJBELpNakWgp"
+    ]
+  },
+  {
+    "id": "auto-20261130-1200",
+    "type": "image",
+    "scheduled_at": "2026-11-30T12:00:00Z",
+    "status": "pending",
+    "caption": "Un portrait qui a de la présence. 👑\n\n« Noel » : un rendu réaliste, pensé avec un contexte afro.\nTu veux ta propre version ? Le prompt est prêt à copier.\n\n👉 Le prompt est sur Calista, la galerie de prompts IA en contexte afro. Lien dans la bio.\n\n#CalistaApp #PromptIA #IAAfricaine #CreativeIA #AbidjanCreatives #CoteDIvoire #ContenuIA #EntrepreneurIvoirien",
+    "images": [
+      "images/auto/hZoSoDGqbMWVc0tV8kJK.jpg"
+    ],
+    "source_id": "hZoSoDGqbMWVc0tV8kJK"
   }
 ]
