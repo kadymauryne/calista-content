@@ -466,7 +466,7 @@
     "id": "reel-20261128-1800",
     "type": "reel",
     "scheduled_at": "2026-11-28T18:00:00Z",
-    "status": "pending",
+    "status": "published",
     "caption": "5 pubs produit, 0 studio photo. 🎯\n\nTout est généré par IA avec un prompt. Tu veux le même rendu pour ton produit ? Les prompts sont prêts à copier.\n\n👉 Le prompt est sur Calista, la galerie de prompts IA en contexte afro. Lien dans la bio.\n\n#CalistaApp #PromptIA #IAAfricaine #CreativeIA #AbidjanCreatives #CoteDIvoire #ContenuIA #EntrepreneurIvoirien",
     "hook": "Ces pubs ? Zéro shooting. Juste un prompt.",
     "cta": "Copie le prompt et crée le tien",
@@ -498,7 +498,10 @@
       "Pc9h0VMvCcgCLEfdSMAu",
       "AP40PWOBItzMJVL7EcT5",
       "9L0kX2VOMJBELpNakWgp"
-    ]
+    ],
+    "video_url": "https://cdn.jsdelivr.net/gh/kadymauryne/calista-content@48c815279158ccb42f5ec885fb16aef3ea9d8c0f/videos/reel-20261128-1800.mp4",
+    "ig_media_id": "18173024668480360",
+    "published_at": "2026-11-28T18:01:30+00:00"
   },
   {
     "id": "auto-20261130-1200",
